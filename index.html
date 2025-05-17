@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ESCUELA DE EDUCACION SECUNDARIA N°2</title>
-  <link rel="manifest" href="/manifest.json">
-  <link rel="icon" href="/icons/logo192.png" sizes="192x192" type="image/png">
-  <link rel="icon" href="/icons/logo512.png" sizes="512x512" type="image/png">
-  <link rel="apple-touch-icon" href="/icons/logo192.png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/logo192.png" sizes="192x192" type="image/png">
+  <link rel="icon" href="icons/logo512.png" sizes="512x512" type="image/png">
+  <link rel="apple-touch-icon" href="icons/logo192.png">
   <style>
     :root {
       --primary-bg: #1e1e1e;
@@ -104,26 +104,10 @@
       50%       { box-shadow: 0 0 15px var(--glow-stop-1); }
     }
     @media (max-width: 768px) {
-      .container { 
-        padding: 20px;
-        width: 90%;
-        max-width: 900px;
-      }
-      .buttons button { 
-        width: 90%;
-        height: 55px;
-        font-size: 1em;
-        margin: 0 auto;
-        display: block;
-      }
-      h1 { 
-        font-size: 1.8em;
-        margin-bottom: 20px;
-      }
-      h2 { 
-        font-size: 1.3em;
-        margin: 15px 0;
-      }
+      .container { padding: 20px; }
+      .buttons button { width: 100%; height: 45px; font-size: 0.9em; }
+      h1 { font-size: 1.5em; }
+      h2 { font-size: 1.2em; }
     }
   </style>
 </head>
@@ -140,7 +124,6 @@
       <button id="btn6">6°</button>
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw2VxBb_kqjTEqVHVHTdGEhaPIgOUd3bGe6_LtjDpFGsGv6NtNVrTvMvrVRnUiXH4a5JA/exec">INTENSIFICACION</button>
       <button id="btn-preceptores">PRECEPTORES</button>
-      <button id="install-app" style="display: none;">Instalar App</button>
     </div>
     <div id="submenu-preceptores" class="buttons" style="display:none;">
       <h2>Preceptores</h2>
@@ -823,8 +806,6 @@
       <button id="back-6-10">Volver</button>
     </div>
   </div>
-  <!-- Botón de instalación -->
-  <button id="install-app" style="display: none;">Instalar App</button>
 </body>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -851,7 +832,7 @@ document.addEventListener('DOMContentLoaded', function() {
     preBtn.onclick = function() { mainMenu.style.display = 'none'; preSub.style.display = 'flex'; };
     backPre.onclick = function() { preSub.style.display = 'none'; mainMenu.style.display = 'flex'; };
   }
-  // Cursos principales y sus materias
+  // Cursos within Preceptores
   ['1-1','1-2','1-3','1-4','1-5','1-6',
    '2-1','2-2','2-3','2-4','2-5','2-6',
    '3-1','3-2','3-3','3-4','3-5','3-6',
@@ -859,241 +840,22 @@ document.addEventListener('DOMContentLoaded', function() {
    '5-1','5-2','5-3','5-4','5-5','5-7','5-8','5-10',
    '6-1','6-2','6-3','6-4','6-5','6-10']
   .forEach(function(code) {
-    // Manejar cursos principales
-    const btn = document.getElementById('btn' + code);
-    const sub = document.getElementById('subjects-' + code);
-    const back = document.getElementById('back-' + code);
-    if (btn && sub && back) {
-      btn.onclick = function() { 
-        // Ocultar el menú actual
-        const currentMenu = document.querySelector('.buttons[style*="display: flex"]');
-        if (currentMenu) currentMenu.style.display = 'none';
-        // Mostrar el menú de materias
-        sub.style.display = 'flex';
-      };
-      back.onclick = function() { 
-        // Volver al menú anterior
-        const parentMenu = document.querySelector('.buttons[style*="display: none"]');
-        if (parentMenu) parentMenu.style.display = 'flex';
-        sub.style.display = 'none';
-      };
-    }
-    // Manejar cursos dentro de preceptores
     const btnC = document.getElementById('btn-preceptores-' + code);
     const subC = document.getElementById('subjects-' + code);
     const backC = document.getElementById('back-' + code);
     if (btnC && subC && backC) {
-      btnC.onclick = function() { 
-        preSub.style.display = 'none'; 
-        subC.style.display = 'flex'; 
-      };
-      backC.onclick = function() { 
-        subC.style.display = 'none'; 
-        preSub.style.display = 'flex'; 
-      };
+      btnC.onclick = function() { preSub.style.display = 'none'; subC.style.display = 'flex'; };
+      backC.onclick = function() { subC.style.display = 'none'; preSub.style.display = 'flex'; };
     }
   });
   // Navigation for data-url
   document.querySelectorAll('button[data-url]').forEach(function(b) {
-    b.onclick = function() {
-      const url = b.dataset.url;
-      if (url) {
-        // Abrir en una nueva pestaña para Google Forms
-        window.open(url, '_blank');
-      }
-    };
+    b.onclick = function() { if (b.dataset.url) window.location.href = b.dataset.url; };
   });
   // Ensure the Preceptores submenu container exists
   if (!document.getElementById('submenu-preceptores')) {
     console.error('No se encontró <div id="submenu-preceptores">');
   }
 });
-  </script>
-  <script>
-    // Verificar si el navegador soporta Service Workers
-    if ('serviceWorker' in navigator) {
-      // Registrar Service Worker con ruta relativa para GitHub Pages
-      navigator.serviceWorker.register('sw.js', { scope: './' })
-        .then(registration => {
-          console.log('Service Worker registrado con éxito');
-          console.log('Scope:', registration.scope);
-        })
-        .catch(error => {
-          console.error('Error al registrar el Service Worker:', error);
-        });
-    }
-
-    // Variables globales para la instalación
-    let deferredPrompt = null;
-    const installButton = document.getElementById('install-app');
-
-    // Estilo para el botón de instalación
-    installButton.style.cssText = `
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      padding: 10px 20px;
-      background-color: #4e54c8;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      z-index: 1000;
-      display: block;
-    `;
-
-    // Evento cuando el navegador detecta que la app puede ser instalada
-    
-    // Manejar el evento beforeinstallprompt
-    window.addEventListener('beforeinstallprompt', (e) => {
-      console.log('Evento beforeinstallprompt detectado');
-      // Prevent Chrome 67 and earlier from automatically showing the prompt
-      e.preventDefault();
-      // Stash the event so it can be triggered later.
-      deferredPrompt = e;
-      // Update UI to notify the user they can install the PWA
-      installButton.style.display = 'block';
-      installButton.textContent = 'Instalar App';
-      
-      // Mostrar un mensaje en la consola para depuración
-      console.log('Prompt disponible para mostrar');
-      
-      // Verificar si el botón ya tiene un listener de click
-      if (!installButton.onclick) {
-        installButton.onclick = async () => {
-          console.log('Botón de instalación clickeado');
-          if (!deferredPrompt) {
-            console.log('No hay prompt disponible para mostrar');
-            return;
-          }
-          
-          // Mostrar el prompt
-          deferredPrompt.prompt();
-          
-          // Esperar por la respuesta del usuario
-          const { outcome } = await deferredPrompt.userChoice;
-          
-          if (outcome === 'accepted') {
-            console.log('Usuario aceptó la instalación');
-            installButton.textContent = 'App Instalada';
-            installButton.style.backgroundColor = '#666';
-            installButton.style.cursor = 'default';
-            installButton.disabled = true;
-          } else {
-            console.log('Usuario rechazó la instalación');
-          }
-          
-          // Resetear el estado
-          deferredPrompt = null;
-        };
-      }
-    });
-
-    // Verificar si el navegador soporta PWA
-    if ('serviceWorker' in navigator && 'beforeinstallprompt' in window) {
-      console.log('Este navegador soporta PWA');
-      installButton.style.display = 'block';
-    } else {
-      console.log('Este navegador no soporta PWA');
-      installButton.style.display = 'none';
-    }
-
-    // Verificar si el navegador soporta PWA
-    if (!('serviceWorker' in navigator) || !('beforeinstallprompt' in window)) {
-      console.log('Este navegador no soporta PWA');
-      installButton.style.display = 'none';
-    }
-
-    // Verificar si el botón de instalación existe
-    if (!installButton) {
-      console.error('No se encontró el botón de instalación');
-    }
-
-    // Reset the deferred prompt variable, since
-    // we've used the prompt
-    function resetInstallState() {
-      deferredPrompt = null;
-      installButton.style.display = 'none';
-      installButton.textContent = 'Instalar App';
-    }
-
-    // Cuando el usuario hace clic en el botón de instalación
-    installButton.addEventListener('click', async () => {
-      console.log('Botón de instalación clickeado');
-      if (!deferredPrompt) {
-        console.log('No hay prompt disponible para mostrar');
-        return;
-      }
-      
-      // Mostrar el prompt
-      deferredPrompt.prompt();
-      
-      // Esperar por la respuesta del usuario
-      const { outcome } = await deferredPrompt.userChoice;
-      
-      if (outcome === 'accepted') {
-        console.log('Usuario aceptó la instalación');
-        installButton.textContent = 'App Instalada';
-        installButton.style.backgroundColor = '#666';
-        installButton.style.cursor = 'default';
-        installButton.disabled = true;
-      } else {
-        console.log('Usuario rechazó la instalación');
-      }
-      
-      // Resetear el estado
-      resetInstallState();
-    });
-
-    // Verificar si la app ya está instalada
-    if (window.matchMedia('(display-mode: standalone)').matches) {
-      console.log('App ya está instalada en modo standalone');
-      installButton.textContent = 'App Instalada';
-      installButton.style.backgroundColor = '#666';
-      installButton.style.cursor = 'default';
-      installButton.disabled = true;
-    }
-
-    // Evento cuando la app ya está instalada
-    window.addEventListener('appinstalled', (e) => {
-      console.log('App instalada');
-      deferredPrompt = null;
-      installButton.textContent = 'App Instalada';
-      installButton.style.backgroundColor = '#666';
-      installButton.style.cursor = 'default';
-      installButton.disabled = true;
-    });
-
-    // Evento click en el botón de instalación
-    installButton.addEventListener('click', async () => {
-      console.log('Botón de instalación clickeado');
-      if (deferredPrompt) {
-        console.log('Mostrando prompt de instalación');
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === 'accepted') {
-          console.log('Usuario aceptó la instalación');
-          installButton.textContent = 'App Instalada';
-          installButton.style.backgroundColor = '#666';
-          installButton.style.cursor = 'default';
-          installButton.disabled = true;
-        } else {
-          console.log('Usuario rechazó la instalación');
-        }
-        deferredPrompt = null;
-      } else {
-        console.log('No hay prompt disponible para mostrar');
-      }
-    });
-
-    // Verificar si la app ya está instalada
-    if (window.matchMedia('(display-mode: standalone)').matches) {
-      console.log('App ya está instalada en modo standalone');
-      installButton.textContent = 'App Instalada';
-      installButton.style.backgroundColor = '#666';
-      installButton.style.cursor = 'default';
-      installButton.disabled = true;
-    }
-  </script>
-</body>
+</script>
 </html>
