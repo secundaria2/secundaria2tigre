@@ -140,6 +140,7 @@
       <button id="btn6">6°</button>
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw2VxBb_kqjTEqVHVHTdGEhaPIgOUd3bGe6_LtjDpFGsGv6NtNVrTvMvrVRnUiXH4a5JA/exec">INTENSIFICACION</button>
       <button id="btn-preceptores">PRECEPTORES</button>
+      <button id="install-app" style="display: none;">Instalar App</button>
     </div>
     <div id="submenu-preceptores" class="buttons" style="display:none;">
       <h2>Preceptores</h2>
@@ -907,49 +908,52 @@ document.addEventListener('DOMContentLoaded', function() {
 });
   </script>
   <script>
-    // Manejar la instalación de la PWA
+    // Variables globales para la instalación
     let deferredPrompt;
-    
+    const installButton = document.getElementById('install-app');
+
+    // Estilo para el botón de instalación
+    installButton.style.cssText = `
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background-color: #4e54c8;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1000;
+      display: block;
+    `;
+
+    // Evento cuando el navegador detecta que la app puede ser instalada
     window.addEventListener('beforeinstallprompt', (e) => {
-      // Evita que Chrome muestre automáticamente el banner
       e.preventDefault();
-      // Guarda el evento para usarlo más tarde
       deferredPrompt = e;
-      
-      // Muestra un botón o mensaje para instalar la app
-      const installButton = document.createElement('button');
-      installButton.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        padding: 10px 20px;
-        background-color: #4e54c8;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        z-index: 1000;
-      `;
-      installButton.textContent = 'Instalar App';
-      installButton.onclick = () => {
-        // Muestra el banner de instalación
+    });
+
+    // Evento cuando la app ya está instalada
+    window.addEventListener('appinstalled', () => {
+      // No ocultamos el botón, lo mantenemos visible
+    });
+
+    // Evento click en el botón de instalación
+    installButton.addEventListener('click', async () => {
+      if (deferredPrompt) {
         deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the A2HS prompt');
-          } else {
-            console.log('User dismissed the A2HS prompt');
-          }
-          deferredPrompt = null;
-        });
-      };
-      document.body.appendChild(installButton);
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          // Mantenemos el botón visible incluso después de la instalación
+        }
+        deferredPrompt = null;
+      }
     });
 
     // Verificar si la app ya está instalada
-    window.addEventListener('appinstalled', (evt) => {
-      console.log('App instalada');
-    });
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      // Mantenemos el botón visible incluso si está instalada
+    }
   </script>
 </body>
 </html>
