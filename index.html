@@ -954,7 +954,23 @@ document.addEventListener('DOMContentLoaded', function() {
       // Update UI to notify the user they can install the PWA
       installButton.style.display = 'block';
       installButton.textContent = 'Instalar App';
+      
+      // Mostrar un mensaje en la consola para depuración
+      console.log('Prompt disponible para mostrar');
     });
+
+    // Verificar si el navegador soporta PWA
+    if (!('serviceWorker' in navigator) || !('beforeinstallprompt' in window)) {
+      console.log('Este navegador no soporta PWA');
+      installButton.style.display = 'none';
+      return;
+    }
+
+    // Verificar si el botón de instalación existe
+    if (!installButton) {
+      console.error('No se encontró el botón de instalación');
+      return;
+    }
 
     // Reset the deferred prompt variable, since
     // we've used the prompt
