@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESCUELA DE EDUCACION SECUNDARIA N°2</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    .logo-container {
+      margin: 40px 0 20px;
+      text-align: center;
+    }
+    .logo {
+      max-width: 300px;
+      height: auto;
+      border-radius: 150px;
+      box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent), 0 8px 32px rgba(0,0,0,0.2);
+      animation: glow-colors 8s ease-in-out infinite;
+    }
+    :root {
+      --primary-bg: #1e1e1e;
+      --sidebar-bg: #2a2a2a;
+      --card-bg: #2a2a2a;
+      --accent: #ffcb2b;
+      --text-color: #fff;
+      --border-color: #444;
+      --glow-stop-1: #ff69b4;
+      --glow-stop-2: #ffa07a;
+      --glow-stop-3: #ffff8c;
+      --glow-stop-4: #8bc34a;
+      --glow-stop-5: #03a9f4;
+    }
+    [data-theme="light"] {
+      --primary-bg: #fff;
+      --sidebar-bg: #f5f5f5;
+      --card-bg: #fff;
+      --accent: #e67e22;
+      --text-color: #000;
+      --border-color: #ccc;
+    }
+    * { box-sizing: border-box; }
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--primary-bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: var(--text-color);
+    }
+    .container {
+      background: var(--card-bg);
+      /* Diseño desktop por defecto */
+      width: 60%;
+      max-width: 800px;
+      margin: 40px auto;
+      text-align: center;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent), 0 8px 32px rgba(0,0,0,0.2);
+      animation: glow-colors 8s ease-in-out infinite;
+    }
+    .container h1 {
+      margin-bottom: 30px;
+      font-weight: 600;
+      font-size: 2em;
+    }
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    .buttons button {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      width: auto;
+      min-width: 200px;
+      max-width: 300px;
+      height: 50px;
+      font-size: 1em;
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    }
+    .buttons button:hover {
+      background: rgba(255,255,255,0.4);
+      transform: translateY(-3px);
+      animation: glow-btn 3s ease-in-out infinite;
+    }
+    @keyframes glow-colors {
+      0%, 100% { box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent), 0 8px 32px rgba(0,0,0,0.2); }
+      25% { box-shadow: 0 0 20px var(--glow-stop-1), 0 0 40px var(--glow-stop-1), 0 8px 32px rgba(0,0,0,0.2); }
+      50% { box-shadow: 0 0 20px var(--glow-stop-2), 0 0 40px var(--glow-stop-2), 0 8px 32px rgba(0,0,0,0.2); }
+      75% { box-shadow: 0 0 20px var(--glow-stop-3), 0 0 40px var(--glow-stop-3), 0 8px 32px rgba(0,0,0,0.2); }
+    }
+    @keyframes glow-btn {
+      0%, 100% { box-shadow: 0 0 15px var(--accent); }
+      50%       { box-shadow: 0 0 15px var(--glow-stop-1); }
+    }
+    @media (max-width: 768px) {
+      .container { padding: 20px; }
+      .buttons button { width: 100%; height: 45px; font-size: 0.9em; }
+      h1 { font-size: 1.5em; }
+      h2 { font-size: 1.2em; }
+    }
+  </style>
+</head>
+  <body>
+    <div class="container">
+    <h1>ESCUELA DE EDUCACION SECUNDARIA N°2</h1>
+    <div class="logo-container">
+      <img src="assets/logo.png" alt="Logo de la Escuela" class="logo">
+    </div>
+    <div id="install-button" class="buttons" style="display: none;">
+      <button id="installApp" style="background: var(--accent); color: var(--text-color); font-weight: 600;">
+        Instalar App
+      </button>
+    </div>
+    <div id="main-menu" class="buttons">
+      <button id="btn1">1°</button>
+      <button id="btn2">2°</button>
+      <button id="btn3">3°</button>
+      <button id="btn4">4°</button>
+      <button id="btn5">5°</button>
+      <button id="btn6">6°</button>
+      <button id="btnPreceptores">PRECEPTORES</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw2VxBb_kqjTEqVHVHTdGEhaPIgOUd3bGe6_LtjDpFGsGv6NtNVrTvMvrVRnUiXH4a5JA/exec">INTENSIFICACION</button>
+    </div>
+    <!-- Submenús de materias -->
+      <button id="pre4-2">4°2°</button>
+      <button id="pre4-3">4°3°</button>
+      <button id="pre4-4">4°4°</button>
+      <button id="pre4-7">4°7°</button>
+      <button id="pre4-8">4°8°</button>
+      <button id="pre4-10">4°10°</button>
+      <button id="pre5-1">5°1°</button>
+      <button id="pre5-2">5°2°</button>
+      <button id="pre5-3">5°3°</button>
+      <button id="pre5-4">5°4°</button>
+      <button id="pre5-7">5°7°</button>
+      <button id="pre5-8">5°8°</button>
+      <button id="pre5-10">5°10°</button>
+      <button id="pre6-1">6°1°</button>
+      <button id="pre6-2">6°2°</button>
+      <button id="pre6-3">6°3°</button>
+      <button id="pre6-4">6°4°</button>
+      <button id="pre6-5">6°5°</button>
+      <button id="pre6-10">6°10°</button>
+      <button id="backPreceptores">Volver</button>
+    </div>
+    <div id="submenu-1" class="buttons" style="display:none;">
+      <h2>1° Año</h2>
+      <button id="btn1-1">1°1°</button>
+      <button id="btn1-2">1°2°</button>
+      <button id="btn1-3">1°3°</button>
+      <button id="btn1-4">1°4°</button>
+      <button id="btn1-5">1°5°</button>
+      <button id="btn1-6">1°6°</button>
+      <button id="back1">Volver</button>
+    </div>
+    <!-- Submenu para 2° y 3° -->
+    <div id="submenu-2" class="buttons" style="display:none;">
+      <button id="btn2-1">2°1°</button>
+      <button id="btn2-2">2°2°</button>
+      <button id="btn2-3">2°3°</button>
+      <button id="btn2-4">2°4°</button>
+      <button id="btn2-5">2°5°</button>
+      <button id="btn2-6">2°6°</button>
+      <button id="back2">Volver</button>
+    </div>
+    <div id="submenu-3" class="buttons" style="display:none;">
+      <button id="btn3-1">3°1°</button>
+      <button id="btn3-2">3°2°</button>
+      <button id="btn3-3">3°3°</button>
+      <button id="btn3-4">3°4°</button>
+      <button id="btn3-5">3°5°</button>
+      <button id="btn3-6">3°6°</button>
+      <button id="back3">Volver</button>
+    </div>
+    <!-- Submenu para 4° -->
+    <div id="submenu-4" class="buttons" style="display:none;">
+      <button id="btn4-1">4°1°</button>
+      <button id="btn4-2">4°2°</button>
+      <button id="btn4-3">4°3°</button>
+      <button id="btn4-4">4°4°</button>
+      <button id="btn4-5">4°5°</button>
+      <button id="btn4-7">4°7°</button>
+      <button id="btn4-8">4°8°</button>
+      <button id="btn4-10">4°10°</button>
+      <button id="back4">Volver</button>
+    </div>
+    <!-- Submenu para 5° -->
+    <div id="submenu-5" class="buttons" style="display:none;">
+      <button id="btn5-1">5°1°</button>
+      <button id="btn5-2">5°2°</button>
+      <button id="btn5-3">5°3°</button>
+      <button id="btn5-4">5°4°</button>
+      <button id="btn5-5">5°5°</button>
+      <button id="btn5-7">5°7°</button>
+      <button id="btn5-8">5°8°</button>
+      <button id="btn5-10">5°10°</button>
+      <button id="back5">Volver</button>
+    </div>
+    <!-- Submenu para 6° -->
+    <div id="submenu-6" class="buttons" style="display:none;">
+      <button id="btn6-1">6°1°</button>
+      <button id="btn6-2">6°2°</button>
+      <button id="btn6-3">6°3°</button>
+      <button id="btn6-4">6°4°</button>
+      <button id="btn6-5">6°5°</button>
+      <button id="btn6-10">6°10°</button>
+      <button id="back6">Volver</button>
+    </div>
+    <!-- Subject menus for each 1° item -->
+    <div id="subjects-1-1" class="buttons" style="display:none;">
+      <h2>Curso 1°1°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbff_Y1sKj12X251-8Ku9uPWjUuPJTTIriv9wUJLtA-C44iC7EHd9P118Diw6tsXokMSg/exec">Educacion Fisica</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwI6mjWHSgLC_znB6vN2KAIqYtyjI8Gfcp0flGhfJWm8KX0fp65CLYSvfpy5nKQHI_F/exec">Ingles</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzNUImkWpC2gUqWIOdfu8ghULnV5lW8T2VN4uMBchmPOwGmTRRs3x9QwcdoIBylkl2v/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxgKuXnOekzzwsx9HeXYCKO4lRk0rIlyCNFAmlTDHy8kBbbd6QuJkXZ-yIdXQmG9C-2/exec">Prácticas del Lenguaje</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxgKuXnOekzzwsx9HeXYCKO4lRk0rIlyCNFAmlTDHy8kBbbd6QuJkXZ-yIdXQmG9C-2/exec">Construcción de Ciudadania</button>
+      <button id="back-1-1">Volver</button>
+    </div>
+    <div id="subjects-1-2" class="buttons" style="display:none;">
+      <h2>Curso 1°2°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyMDwPADZm1bcXKi4BIBfvqPwZ43X1p0ew-eDeYz_HfZU86eCFJ-tAX597ucj3x6yD4/exec">Ciencias Naturales</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw8-Ngs3dKTxg_Jbi8jrWzbZBlOfQFXzB34j32dVj3uC8jcsWwcOM5GRbXX6zrqU08s/exec">Ciencias Sociales</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyF-myu9HaENb5soGZ5hSQ3WEPLq2jC3P_inF856iGpbZWP4nuULHN2p-aRUzbFxe8N/exec">Educacion Artistica</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbff_Y1sKj12X251-8Ku9uPWjUuPJTTIriv9wUJLtA-C44iC7EHd9P118Diw6tsXokMSg/exec">Educacion Fisica</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwI6mjWHSgLC_znB6vN2KAIqYtyjI8Gfcp0flGhfJWm8KX0fp65CLYSvfpy5nKQHI_F/exec">Ingles</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzNUImkWpC2gUqWIOdfu8ghULnV5lW8T2VN4uMBchmPOwGmTRRs3x9QwcdoIBylkl2v/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxgKuXnOekzzwsx9HeXYCKO4lRk0rIlyCNFAmlTDHy8kBbbd6QuJkXZ-yIdXQmG9C-2/exec">Prácticas del Lenguaje</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwEnq5KaaSWanMJJGgxVFExa6VFF43BF_ktQZzAWlkPSqv9QXU6fUGR3qskIkZGMPdP/exec">Construcción de Ciudadania</button>
+      <button id="back-1-2">Volver</button>
+    </div>
+    <div id="subjects-1-3" class="buttons" style="display:none;">
+      <h2>Curso 1°3°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxzYzAkfUXd87qT_tNOmaPdcGX83RG0TrH4QYHahKjAVpyTm8NdTGnhnI8nQ2VNFWUG1Q/exec">Ciencias Naturales</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxAPKr_WN73Ye11ks9x-kLhiJEHX0H9RFHGCnDO0qDQbNfCIE-uBnoYM_bdgDBNypq7/exec">Ciencias Sociales</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxNQkbIZ-ei-cUjTUh3wXg_Bj_1-D6jMgoWR4Et41DwtLOfO9uMs9WbnLiI7J9b3dkG/exec">Educacion Fisica</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyDPLtxz-huQXa8e7uy90cj9yQ71cT3o4XwdeSXNslF_GTpWrMYPxNZPIxjSrKhwdep/exec">Educacion Artistica</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxDgeVeepg5dJayvTqc0rSmgAxnR3cDq0VnG1Z8P_IWXsDp1k2pGs6fGvTvKSIBGu_u/exec">Ingles</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxrCHLxF9ez3lzQl8ZDauEt1GnuQ4GqSRhNJZgS30Pketz_ehUZuvBr-t7TBQjTJbup/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbz_eP6fTgAJBE0UReDTxM9Mu0p1xLKwV3-tn8MRHO0Jr4_I6RXxc6JFU3r5O2NiHiOG/exec">Prácticas del Lenguaje</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzT2fTw85N2LGWIYXLuqGjxu45UNaLtMKDgl4Ib99_SfCcpZeShzbf3h4bQdyH-vLUf/exec">Construcción de Ciudadania</button>
+      <button id="back-1-3">Volver</button>
+    </div>
+    <div id="subjects-1-4" class="buttons" style="display:none;">
+      <h2>Curso 1°4°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzBAZOzkBTWVMxuxHJbgpqIlItJg1UxYy3HftFjMQHuLqnToxjWhGEw72W7ilq1QpdKEA/exec">Educacion Fisica</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxnZhhfxvobCNWmYE7Ie5NZm5vKdaTyFaaQADp4cByXztEG3Zqo7vBIrVVmNlxEnIy1zA/exec">Ingles</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwK3-r9-c9bily935NDODO9GkF5muuPTXoTgx_08ElZu9JPCh-m2wGEJhdBfjN9deHBAQ/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw5kBYyBvvmqt4AMmjVPDnDlql8Ff-82w0suTucpSLwMPkTjnRTiTxgVhYy7wyzJFiANA/exec">Prácticas del Lenguaje</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbz1m6WTrBuO5gRTJhTtGkcIsCbwFmypb6MV3kX1HZaIyTYSjjDG_J_2aoc5N8bMxFeZpw/exec">Construcción de Ciudadania</button>
+      <button id="back-1-4">Volver</button>
+    </div>
+    <div id="subjects-1-5" class="buttons" style="display:none;">
+      <h2>Curso 1°5°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwZr1f34NvqFAHBtGHJjj7SaHIpWh6sLCg69o7lLUo5YsXyoSe1vHgSHJPai-fMobGm/exec">Ciencias Naturales</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycby9ZcuLpdDuN7G9SSGCpcUA2Hkr_TuN_f-sqiWgYuwC3kilyulhAjX7BLqYknbdYizP/exec">Ciencias Sociales</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxrjqaJB_zbZ8rciM-Yh1xQsYvTGpq2kIM185rE2AE0ebCgf9fpG0-55HNIm6-kSfGE/exec">Educacion Fisica</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwee2wRaI5bhzUSFWXrZykufx6_kfZizg7TXwDd54OzS9tdWMK40dEZnAdEP5HRsqqi/exec">Educacion Artistica</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyr9Mdw6Zl7aRiF97YHENKdjhzAiz5-S9CBd4mZvzoeGmRlJvvyUS8Pc3iEHribS40S/exec">Ingles</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwztNvaDEbA8dQUAXg7VHLUhkpf8pNnxSYS5FhQ0of3Kn0z0qwCp9cSR-Qfv0Z_r8cP/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxUWa8LSFDs9qwO-G-uAiYT9dStHppEtbmkUIYKTKhg1uWZUv-F5wsHNt7PD5lBKJUV/exec">Prácticas del Lenguaje</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyinF3I9SGPY0rWv9ZanI0HHpFVEgqlQBBXyAE_zhmBgOCOPZRMtDpBDV3HsIrveZie/exec">Construcción de Ciudadania</button>
+      <button id="back-1-5">Volver</button>
+    </div>
+    <div id="subjects-1-6" class="buttons" style="display:none;">
+      <h2>Curso 1°6°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzPSBMCPUdxHmT4yahMbxSwQIMTZ8KngMAwPcO1hJkZ3Qu1wjcRnsYVdBQ1jDo6BMkt/exec">Ciencias Naturales</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyO6iVbXFR5RmPf0oFmL-FujyInQyAUifZ6FCm0KKco8DE0pXhLYxjidWxS62CeWpgo/exec">Ciencias Sociales</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwSsSpr_ht11z2vhro7zwFyDlmctNU1XQbwrakDQrrcOdfqYx2kYA1UJffl4sS7Jlut/exec">Educacion Fisica</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycby2aB26UR86Y6elsTsxGeYR3AxoF7DS4nR5XSv3oZwA4cUR8e1m6kkPxoF1-g6tiJWA/exec">Educacion Artistica</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwW3ABEQ8wicxlF0wr7MC260zE4Ip1Bnk57fih5hjnVMu82y8WTH81ZoJiOMiew18V2/exec">Ingles</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwVFtmPP0klgFcXaXwTvFoRHgVEoTzCwAI0mAHoPBTcIVccop6TNoLQ_l0yPBWWi4Iu/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxjALhr3d1xEPNU8ly2rvlFWR8bHp8tZh8zks1oCXn4eY48fIbYQkODli_ZocK0W8ZD/exec">Prácticas del Lenguaje</button>
+      <button data-url="">Construcción de Ciudadania</button>
+      <button id="back-1-6">Volver</button>
+    </div>
+    <!-- Subject menus for each 2° item -->
+    <div id="subjects-2-1" class="buttons" style="display:none;">
+      <h2>Curso 2°1°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxzYzAkfUXd87qT_tNOmaPdcGX83RG0TrH4QYHahKjAVpyTm8NdTGnhnI8nQ2VNFWUG1Q/exec">Biología</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzsOTKLf8XE4Bn3WgzvGhhEr-FuMx-HFlt_BUYENnWwNoBD7ljNZ1pMtEB4AcFl7gZzNw/exec">Construcción de Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzvK7pHgd5taQzLkFPLfPyIxLGbbMJ87VPPPWVOlg1o-GKxJxRHDFOjgeJ88cjfWhmVkg/exec">Educación Artística</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbff_Y1sKj12X251-8Ku9uPWjUuPJTTIriv9wUJLtA-C44iC7EHd9P118Diw6tsXokMSg/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzp4gQr8gUIV7QdIzfCCXfsq4Gs2R45Ijm0XY4RbEmXoT9jcd6S3jyQN69U-ZFsB-pE/exec">Físico-Química</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw-FtUh2q3ZRX7v9dC8qTulZz-p_RFcU6Nj7FrlZuP6GxVW1kUG5fxEQ2sWcFPGjlH6iQ/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwYfoybseqkRrBKCTLvnBHaaLPosJKmEkbOlVs1R5IVwtmiZq0E2xqvTURSYdyOsPqXeg/exec">Ingles</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzOsPT5esxU6dn1qvtscyDHjZzwDOFkBQWRLzPDCwKXvjLhRPuWHwUX5WfDdzE8_-IrZA/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwDAs-i9kW2JVxNbChhLaf9vHD8Z-PuyBgGB5feN1v9npSBma_iPqYWsvomIZQmywMAeA/exec">Prácticas del Lenguaje</button>
+      <button id="back-2-1">Volver</button>
+    </div>
+    <div id="subjects-2-2" class="buttons" style="display:none;">
+      <h2>Curso 2°2°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzIoBLleGswaw1Jq_VIUWCsvo1joK1EwfoS1Mku0kR_upcHzlZfROqMPjOZiEWFF6PP/exec">Biología</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwjsNOMISN_mcWRj-8AJDcFJGcxeKCAi82CRj7dyzfNwBUKqktt56cVyE364W6o6kre/exec">Construcción de Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyJX_Ji9ihGX0NOmhMswayjdZqCqCPnZrw4dwlSlB9JpyDeb_bFmPrWwSOfT-tTqvYS/exec">Educación Artística</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyCOC77RH2I2wwFEGBlqnqU5w_jnvt1AKqawJvzGzzoRbfc3nS1CQg9a4Mk-Tc6nHuX/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzp4gQr8gUIV7QdIzfCCXfsq4Gs2R45Ijm0XY4RbEmXoT9jcd6S3jyQN69U-ZFsB-pE/exec">Físico-Química</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwNNV4rFTXycpBKvC_RRyh9DBHvlHtOI7OGX-sv24ZF4aqXfCKljnDvnPFGo5R9wMGs/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwk0XQcR5BKu-KSFsbLMg-DOIlsjiIPbycuX_3935CiU_DVbGn0YThIo2IAdzo1Jd-7/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyq9jc9n28gOU6QFOlp6ryMLaaz4kTdcwUzj2kNOLS-JaXYQkwSQFjpQOafUGacA6pE/exec">Ingles</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzqkZ5WMQtc4MWfFVa3TD6mcnR6RTonveX0VdKKQritJEIHIJCT0VBBwYJ0p1ZfoRms/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbystLs0kmU7tpAzOUm9n4kOzv89c07QXmpKS00QJg4d-wUySLBGjOGp-CLKeXlvg7Nn/exec">Prácticas del Lenguaje</button>
+      <button id="back-2-2">Volver</button>
+    </div>
+    <div id="subjects-2-3" class="buttons" style="display:none;">
+      <h2>Curso 2°3°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzXotUuDYe8o3VrowTtQnDBa7nW8npHsk53WavDX0rQdeUycKNthfFTXaSnAiJ2NXg/exec">Biología</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzsOTKLf8XE4Bn3WgzvGhhEr-FuMx-HFlt_BUYENnWwNoBD7ljNZ1pMtEB4AcFl7gZzNw/exec">Construcción de Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyuHIkC-x9DD8mrpucY9IEEhZemKhXpX63_iQm9nOAImoecHGZUYGS50Z0lwmdIyGwd/exec">Educación Artística</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx3VJvUf2ObNczuOhF2mkw1gGPQTiyeYYVm20OtCuK2cQCZXp6OCFB3mj9kiYBArBWO/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxred5cMVRnTLNRBPcpkzw_E7VTOxDj7UvfwwYrc6sD72mpbRSKM4hxM62kOk6qak3q/exec">Físico-Química</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwHytLA0siLFSTROMTNN-5Qe4PM8F8vArgN7l7BPuaWFDamI5ojR0iPyI7qcqut85Ds/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwKS1ZxrsZIT2grF_0fGvybuGrsd4J0DDL-Cuj4msmJW425i4EsDgOSO2bpzIpZaDTd/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx-dvqScnC7cl2tn1GberXvM3QeMMIdu8MTmYcrDHORNYRJdlVn_LuQccC9JDjoVkMv/exec">Ingles</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbz2JHVLCLblfQEnwMPjtjIUJsyqioYUZ0F7Xj-2PHY7osa1S5sVLrccQJf4mtH_d3k3/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxgZNwl_nfAg0OtkoWYBXXTG5bC-c2fggdP-CuE2_Vi0SPC9H6mZgth7Q6CybJfrw45/exec">Prácticas del Lenguaje</button>
+      <button id="back-2-3">Volver</button>
+    </div>
+    <div id="subjects-2-4" class="buttons" style="display:none;">
+      <h2>Curso 2°4°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwpJ0xi-lmsky4R9Ps0AYBm8Ccylvw71DMJ4fbETFC3xHcMvuPQbZFyvLbIdCuJNrh-/exec">Biología</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx1ppWyb7qb3RTzt5XtfAvPjMmY9AZjHEmCrJwhpkuDoboKbzd3ZHNW7dqGAqTlA9HY/exec">Construcción de Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwseLZ20B0BZ4npQ65zfrrR1T-hx7F710ue4zRKd1SLHuaNinOgVpW_V5N6XuNvWAi3/exec">Educación Artística</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzttkwPRCNpa3HcicyZhxSp_oQ3dlzd5uWtn-j6WsF70SUvKeEXWrdstUIoSp6zlv0w/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzvE3jgzHqPqCcX_tQ5CtDc10Bh5wWqtJIX2c89tdU5C--PGk6c-M1sXqCdNpbSEIe5/exec">Físico-Química</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzEMK4leMph7o3v_mrSMyjlFuAJSwH4Tk7aXp2fu7ryJF7G6QJTEo3pS5NBzZ2J14go/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzkXxOLmW4Li_kvdvDLc31J6wrnrmTZQdAq66Xz22W4qBiPaGRS1w7Up_8TAVnwbb0F/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwlKJy7YdBqJkJm7cDddvcN_kANsbniFDq9oZPKWxSDjbDLDioMCQtGl8Y_jpHOVJs/exec">Ingles</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwD5IfioExU9AocdExIVefw1hbOGKPuwLDvmAu7TrSwtnyRyQFXrs9uVNGeyvAtjTc_/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyRqS_WubJkP6spIvDn4YGuJPxsCAXQ2qiPKF3ybLX-cGzTuhtPJG4UwPwhNgMGDhdT/exec">Prácticas del Lenguaje</button>
+      <button id="back-2-4">Volver</button>
+    </div>
+    <div id="subjects-2-5" class="buttons" style="display:none;">
+      <h2>Curso 2°5°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw1hELgKG6Mp-HMmt4nED8b49HoT5mQTRWp5UVqUS5YyA9igktcSnpPIMn9zV6um8CibA/exec">Biología</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzKmp5r_XMY4gchgOSMtZdYbIXzm5Z8JmCY0YczWOW6ExMbEdhdXI2t5O47pifVVlXiYA/exec">Construcción de Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycby2DXxK-Sld0xGI4aI7Zc4jRyY5GZw8pNp8ogY2DGB0X4_A0ej2lm84YECwwbnYWigb2A/exec">Educación Artística</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyXBT04FCn4nZriFgkHdSZDwgdOu1hqy6Ocr0gm5-xw8JjBF3RNRMVzHmURgLCMC68jcQ/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxko7QdiyFaqfCvTnk_molHLkYGfwPt6tHRsiU19P203oE6LUv0yKraPedStxlY-ZNT/exec">Físico-Química</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxjllWwdvzO-knPhUUIqpQKiXWSI1sEA0glxj7pXB0Drrm5AlRv_vbV4OmYfKShRH50BQ/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzxHetRMlF6grL5wfdaaBrM7qnuORZWkLb5zfsTKvwNJ2gpf946Rugy_YMuJi7wBWMr/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyuiLbj_znjWBqnEptMvC8l9ekszRyQOgPFkf0U9pG4jqKeZiBqnAqb-nafXs9pkepd6Q/exec">Ingles</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwraR5bCadrU757aTyq-Uzk87aiye4XPey7Mp2Wrd_ek18ZYwv3iBLuQInoCD5iR2Cxfw/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycby9IuOmywWtHB235ov9O12LmxjJRxw83AlWbKgJNO_hGKM1miHTXS-bsR8D0MY5zjMfvA/exec">Prácticas del Lenguaje</button>
+      <button id="back-2-5">Volver</button>
+    </div>
+    <div id="subjects-2-6" class="buttons" style="display:none;">
+      <h2>Curso 2°6°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyoxWajWaKHd-8jHjic-qyZJSXy5ctm6CBUcZyBPlTA1G8-6tqbTUhdJN3LvbjAPDLoGQ/exec">Biología</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyt0hdEhAxGUCeprPGN8BXy6lKo3KZuO2yATryV8cmsiwasFlsoM1mqIdovc7nXoP62ag/exec">Construcción de Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyJGPc17bgLoi04FFH3V0ZsglTYucpT4Ceih59LLEaSrVpJEmDhMAbYISbrCfYrAqMkQg/exec">Educación Artística</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxEjX-rk22kfWvqMpYoXu5ph-uCf1aYgdqOrBysfmqOuRiXxMt8EEFS-5E-6mQIsmGqdQ/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwPpJrl3Qapflu7IZF1AFIHb7WmgGdgJxN9xkJY0jgvcec-gY2ngXg_BeqU2FPjXN9Z6A/exec">Físico-Química</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxrGxvy2bSjgjG5hLHArIZfEE0emNcQXz6yIznzkOfXga4j0CAeMjGaK7Zl4tL3yATNgg/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycby4Bny1XgugyUbmHwS1kTg4L9fo-9ir3QA5yPmVgm_AM5x2Hvl8VD8j0nfzYoT_JIW8jg/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycby2mPrLpDr3ZGp9QS6jREE6EozYpQF_YqD3TaLShSeptFK_EL45AdJunwFbq4qrSQ6rgA/exec">Ingles</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwwXcY0ygg-Q9_B6YYr7vprNrzljG6Lq5AeCkaaMYLwliHF6UPQf4uBW742SYfjht8TsA/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx_k5re4puyDsvSyXnDttOuO0LERqoP0wI2yjjA7yoq0M-BTJ481BPcj_UYJ24ofFRg/exec">Prácticas del Lenguaje</button>
+      <button id="back-2-6">Volver</button>
+    </div>
+    <!-- Submenú para 6°10° -->
+    <div id="subjects-6-10" class="buttons" style="display:none;">
+      <h2>Curso 6°10°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxzYzAkfUXd87qT_tNOmaPdcGX83RG0TrH4QYHahKjAVpyTm8NdTGnhnI8nQ2VNFWUG1Q/exec">Ciencias Naturales</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxAPKr_WN73Ye11ks9x-kLhiJEHX0H9RFHGCnDO0qDQbNfCIE-uBnoYM_bdgDBNypq7/exec">Ciencias Sociales</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxNQkbIZ-ei-cUjTUh3wXg_Bj_1-D6jMgoWR4Et41DwtLOfO9uMs9WbnLiI7J9b3dkG/exec">Educación Física</button>
+      <button id="back-6-10">Volver</button>
+    </div>
+    <!-- Subject menus para cada 3° -->
+    <div id="subjects-3-1" class="buttons" style="display:none;">
+      <h2>Curso 3°1°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxLD65-6UntoNxo9rqauNojujuVGeS7Dno7-y_KCMB3qEgDHh6zXD4G4aIyt2J_EuO_/exec">Biología</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzGsCHuy7YEXgcRwcV2NVTViKQBWC0RsbG8PdL9dZDTe7QMv-40aBXVFPSiFt5gcvK8/exec">Construcción de Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbysLnbF-ZP7i1RSFQJwSWecrZUGd3knvaWo-_tI7ihXIQhffHogL8m4J83hXv3TKCMS/exec">Educación Artística</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbylwI1trninHOvDLt0nBKG9HQufM6ckJifdi_--otD2RmuELrHd7LSna3n7ZHQn9Nc5/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyAwDi6sO3Mli9TLbAiS_x6s8RT0P2-22y6zay96beECv3YIPl6nLNuEM1PE4X-jL78/exec">Físico-Química</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwWvweytfJ_9UwisCGQhnumXTcnjIa764huPRcB7XYhdX3qv_oMYrXHmmkAnCsX6Qs_/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwKAUuE7xDAwqRIy2SWAAb8_2WEhapbxOSuETYOfDFz3ScWuj4W6NqgUtdkS5J_uIRS/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyWD0isM27WEa7bp8SOuVpBs7jG6BKlJ7UokV4n4nIp8_SWD71K4aRaQHQAPvMEWSgM/exec">Ingles</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwMBivRCFZ9tX32WSVkqr9Ue-Q8vORvWZOwfrq06zI5l0869M7PXlevwACOXeQOO66h/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxWxwFf60ShgnYn0mV9OGYJZ6Gf_4axOJng5OQxSedVJuSBo9DlCoFmWogA5Movy3Gr/exec">Prácticas del Lenguaje</button>
+      <button id="back-3-1">Volver</button>
+    </div>
+    <div id="subjects-3-2" class="buttons" style="display:none;">
+      <h2>Curso 3°2°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzW5E3SQdFpYFaX4qAnLfDDPwRT_eYDySr7XWg3jCKq6n8NSvD9i9J1aotiKL-V85W8_Q/exec">Biología</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyRNhATMbQTS6SLVXMYM-F1_aw0taqFRf5GLrLqaJNWPW-DmQ3wg2XU8xvE1Di1fVjmEA/exec">Construcción de Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbylIUkS6tOVp8Q-ILQI8HA_46O2HEv8x87M4aQ83A_HU_Me1MydwqltBQi430xn-WBhBA/exec">Educación Artística</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxXsdVXgT3cb1bPtHZMzUoKZ2PKUW57ZxwYQD5O67xqTSah4cUUQcU1XOKkOAH_RVET_w/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzHF42LPr_qxUwsNbcYVvXRFd0Ox2h1EmphEeTRRHbXCzcUVtDifevtYNo_VXy3iD_N3A/exec">Físico-Química</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyN3b11fpiawNkolApi5sPtLcnS0Rvo3se5RC5oOKfhPUSDFeieDjTIuI3Q2_HiHGCEfQ/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwDeMJJLlIECNDsiQ8h-JPvVunSFihOpyIYfReuZHIHBbX-JhP_LMciQVGeFFwx8C1dug/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzY7yHd3CGylEG568Swzjw5u9Rk9_aPtCigKaD-D7eZd7D3lw9IwM3wGrwnC0Vm2SS_wA/exec">Ingles</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwxnpZS7vEZzp9hUF6KdXdWlyPVDc29z7MTgGkEkMrJbvFXwxAp9CQEbFSWlDPY9CnJUg/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwSlSv_ERMgxO1365y83-b1XrQDOKaAhdyM6k9WBp8CQfuqgZwZy_m0OrYCHL-pFpAW/exec">Prácticas del Lenguaje</button>
+      <button id="back-3-2">Volver</button>
+    </div>
+    <div id="subjects-3-3" class="buttons" style="display:none;">
+      <h2>Curso 3°3°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwo4q_WRWIDb6I7Gx7jZPYpVb4SrYf3F4YY7u24cWWkFpwguYVEfHUITTX7mDLEVB2sdQ/exec">Biología</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwjzCsXIazQzs2xJCXfHvUL8Abs8-f_hct3d_zgPfAynOKPhkzU5MniQaC2qEsjBu1dxQ/exec">Construcción de Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwp82m8wEZ-r7iVtI57ZpZo5CdP8JIBB5UDyiSvWkD1Bv5smtPoRHVFOxSRx5wYe7Romw/exec">Educación Artística</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyRS_qi5ixlFGIxkycUbFiZ83RCljNIHuGrQN-oZJSBTmWSZMhZjfAOzDvtGujHfVLf/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzFiF11xA3MVg6T3snuP4yIKgBJyH_DOcX3gG_Rul50bHFilZwjdxdiCYppchW4oIhthg/exec">Físico-Química</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyuh-k4ABu0-FCpGMRyZpXstnlCoBOOA934JZgDP59jwvgHn0LqUDAk2-tPlSBc181Wzg/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxn4d3oLR9Fcp4UhQjSgn7hHh50t8BFe-DNTQkrj-2Sr8QmypEJRogBygfg0H3ZxtR-kA/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzQ01gVDJ2EruMu3oCSqQ3YEOF135E4KoweuIHmHpHtfMAOqVvYhAiZLRoVrNsZlxO1Pw/exec">Ingles</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxWfb-pWxnzCaNaGa47piLR3cG3hpEEiObCYZysh-1jT8RjrROqlG04atRI5wPdsp-pMg/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbz_-3meoqvfcrbsi0Gj7nc2B8TvNRONLDnzNuWqvQchdnmXYcZppRPX-F9FMdIMYypPpw/exec">Prácticas del Lenguaje</button>
+      <button id="back-3-3">Volver</button>
+    </div>
+    <div id="subjects-3-4" class="buttons" style="display:none;">
+      <h2>Curso 3°4°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzjylBE-DoVAxcMoCBOHUT9EiiDWSwZZUWAiVAR_gYTdUnYZsKLZXlEsxlRoV8KxojejA/exec">Biología</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwNI-E63qf4bx8sa6wEY3e5m6eoxsKG74C-hHbpZ6N7aE8USfQ0BNhs2GKGFKBBP--9RQ/exec">Construcción de Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyJ1SoY64U-aKSKWrN0NHAZWpsUY97ol5U8PfevhDoptEnjiD2cRSZFtVCVycPTbNdhtQ/exec">Educación Artística</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxzmvzR8tf8dmTESCAuxp7uIK_vW5aFR7ZDG7mYbVygY5Mc8BcQTksmSn59HI6xv2A3zQ/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzsDBjjJRKuJGyrnVwjpejn28OvsZODZi6dDtU_ttldVSS3ZiKdeKwZoEgvv5fZ3bQ8_w/exec">Físico-Química</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzfV-j_WdqqWhgHoO_hokJIGnJm6_66QRuUo6kMJ20J2EE4ro5h82WNfCfP1bA8zaICHw/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw9u4QfSt1MIGEghhXacJFffXbu6DPIFfRwGUlOYOL4mTcfOjR1kZNhcnLq7ovjFDu9Gw/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycby2GuM82CSQh1sZ9TiCvu8AHDQv049J6xfQCqjqIR9zrYgSWAf_kVCuZY2EtIDYo9Cc/exec">Ingles</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyCbyNceU90g_Bi2ug6gKpTR20LfPjkZdfmSFMDSka0457C1Ubido2YHmXuOL6hLXnyPg/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxiFKmA0R8DJ5WBcne-QBPBhkMdglZ3TnMaxCPnfEnE6djqbBH7xvnPLy-0fgcIR2i2qQ/exec">Prácticas del Lenguaje</button>
+      <button id="back-3-4">Volver</button>
+    </div>
+    <div id="subjects-3-5" class="buttons" style="display:none;">
+      <h2>Curso 3°5°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwCrA0oGtRmHDZrgyvF0nzOtayNFbNFOIQ6yWmWxyMUs9Eq-BpFthUJ_G6IqMCNzyCMXQ/exec">Biología</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwSoLgPoJkfzWhkOUnpxxO8Pd_M8udoE0G260m__ZD-lQdXK2PvPmfrCuVlCYAIjsq_zw/exec">Construcción de Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwfApQJLZEDWXdpOjjrsOju3HxkY2egNjYUX3YFDfFyAgtBwpQ9jVXPIsgaLTpS8S8xiw/exec">Educación Artística</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxIOZArL_OlGacfm6Q_ACSd29Dv9-vROPeSPF_Ni6-bmEovuQz9A8b1irx73ySp27VqaQ/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzWGjQPkkau-xIBmJ-Xz0cKlRF6LlJmakaBqJQ61KwnArEeP-jodKw6hzq0z2gRulPu9A/exec">Físico-Química</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyCxLFaAUS-_4RAq2L0viu6qUczFg65o-u01DFUBJawU3aNl32t8Jwg5zn23sdAZZmUBA/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwNprs1b4YExbyC049bqww8HeZhWHkwSKm7aqOmDE2NgrB73--Xnpw_Cq9wRgrxY2tdWw/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzEsOouENWHry9fBwGSrlREkPzboT163TAYLIu-FsOb0DF78weYLNVj-HX8rqcsO0fcpQ/exec">Ingles</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbz1pND7IHl82RPFgcCllnvnX9ARRZ2wdkdnzgbwP2640S2HnOTvdjOJEEWUB8HdhMyMIQ/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxxGPvJ_U8dkdYIqMKOIw8naxH4ZR_g3V8P494p7Q9f4KdUzvIZTMW-n8sZs1fB9zK-rg/exec">Prácticas del Lenguaje</button>
+      <button id="back-3-5">Volver</button>
+    </div>
+    <div id="subjects-3-6" class="buttons" style="display:none;">
+      <h2>Curso 3°6°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxknboas2U-QJ7Hx6luzdaxcq1zEgd58esX0gzee5ehY5AgWR7tRHl6-AsJMlQ4UjIhAQ/exec">Biología</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwO_uIbrULkRMCzEKImQ2i7ptKolqbCgSk9-9nn9QukpwRntdzbz1fGzA7JycXp57j8VA/exec">Construcción de Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbztPaDs3spgrcY8QnsReN3-tQihZjbtsEqlATtG2zLRPJp3w5FV1fVan7FUxN2vc6Kg7A/exec">Educación Artística</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyLhD36BMk9hkKygupX8GukGVl6lHmxUFncb6jdjYX_vmlXeWb4kNOhwgyT2x8Vl2GxHg/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycby3HBie9DMiDrm1VaxWiXY9MXkrYcd5TAVzTNPTvVZfuQZP3zueS5OG03WRT1-bPTUwKg/exec">Físico-Química</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzdpYn5yfJlWS1x0JoIkIsrS0f2UBYf6getnN7bSTt0TwXF1XEkGaUrQYKFj_WuARDZhg/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzwJVF4ATc2p3B1T1CjgGgoH0076Kykepy9Su6Cn5TsD2A4J8xR_HJ98rqNKVoddK0LOA/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzO4lWdY4qhs23tzQ6bxYoFHNnTv5uB8PRLgqofpE-R0VZ3TepMLIe_iT8pchgEHhQXyw/exec">Ingles</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxHYpD-xYCOkVvOZ98lHpN_AHFerqgmMz118uU_g7_kYdsVMb0tXM7GL3-wbiAIuPdjwQ/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzETaYMWGVGwTBtZBZtNiPoHVwgrz6waQnSttaqxrcdmj_bnBbI6KPWVJe9Iak7relshg/exec">Prácticas del Lenguaje</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx2VxBb_kqjTEqVHVHTdGEhaPIgOUd3bGe6_LtjDpFGsGv6NtNVrTvMvrVRnUiXH4a5JA/exec">Intensificación</button>
+      <button id="back-3-6">Volver</button>
+    </div>
+    <!-- Subject menus para 4° items especificados -->
+    <div id="subjects-4-1" class="buttons" style="display:none;">
+      <h2>Curso 4°1°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxZjiIh_b7O_flXZFs-EI8BfDZBtFuF1Wek2AtwLcAw-vx4_6nSpNomP2f2rUdMSosD/exec">Literatura</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyovtGFkmi1oK6W-pSGMZUN09PEQfOpeuN9DQOAWEku8QBW6romRyN6jxHfUoMkC8P_/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxTVgxH_wECh7NJb3WrzAQ_S03skvMv5_Xlh_HCGv4R2LALXjpLHCBI38Ya3nbdiL1w/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyYDbNmrgb1L0fkfT69VbGEXfH_WzarFcCow3gv38EovhdJ7zYUeVPqsVA2GdAFPnU/exec">Inglés</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx4rf_YoiQTd_Jc8ADeqgLgbX9IOIgxl-rTPWIWsiGGZM0DRxS45L1D25Us_nVy8n2u/exec">Salud y Adolescencia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw9Mw1GXXRvbQBCOJCerWlKotJ9HMagws_lkTWtEn0KysFjeOep4oEpaND2ah0Pl5oN/exec">Introducción a la Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwb2R99ccMXBYxWyt4xYsoAxuiTVHbHS6qTMUpU0RyEC7lL9VUx1GPFh0D-3DUQ0R6c/exec">Biología</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxrGEK24j7aJLrOt57cxBtCx0s0ZcPN4mRJMhkA0BdNC2aN_it9I5Mg3hwY2M5x7500/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx_Rvqw_uSCjp8X1UVxsV5rSPNTz_F3RqxpI43rcGqZ1gy6-JcmFJ5ZvttfeOTKra49/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwoBbp9gT2bhOm8ZPf2lCjZenyB8dGHWBRUXi7Pe_rxWSbibTf3Trj3vLSw5tx7p3K6/exec">Sistema de Información Contable</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwUg1dAFfTFqdXXiU0UkxP2wy_s1gubkTg_18Go18lTHzbUQ1xauWh2iTSQZrLgGtCrlw/exec">Teoría de las Organizaciones</button>
+      <button id="back-4-1">Volver</button>
+    </div>
+    <div id="subjects-4-2" class="buttons" style="display:none;">
+      <h2>Curso 4°2°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycby3iVdihrKGOg3IhK64Mm2HTDHqPTR8Fl_ctoRdu9r8PW18Pm0R2Su2CTlwJ8BuI-JD/exec">Literatura</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyaVLliWudQPUkyyjgqQ4gxLSdSEznYffEveRA8mxTQR5IHKBXEcu-Qi0zkWEuCqidI/exec">Matematica</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbz5gfdtS9JJPsNHll6HVc6W2RO_LBO9WA3cPUAHInuE7PymKditC88SN5p2XficQU90/exec">Educacion Fisica</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzlZRhiuP6peSbE5-Ty_M6EMepD1_5qfiBiS9hvUnVGoKs-ZxBYpsCAno3MRYK4tNQc/exec">Inglés</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxcz3bf4U3nYvmBw5kA41-d11Xt5phlX0GAx9vo35m3T775rI-S3Lz_0Jt6iChCLVyZ/exec">Nticx</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzkXnk2Ujk8JuZqa07RYUkwz4pse5L9hCstTeJVCJr1lML5M3YmKtf8q0q3i2tO6kER/exec">Salud y Adolescencia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbz8gqGpEWFD5jk9db7PTCxjTZy24dV1SwiLsIo29VksexKBd0zl9Zzi_mczaLGA8rns/exec">Introducción a la Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbz5vHVptnacddMCqcReHPFUwXzf89HG-rMyigU5mphkWgH8WrwnHg_EfAYtS7106Fpc/exec">Biología</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwV_BuYYbyBnz5lPfvhuXS8HEIkVLJItO0hU1B2CYx6KPNqR_tJsv-30eokLEdokDG-/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzz6du7H5EMQmVqqpgdByO_VUQCDaIowgCBECbd-so5QAbzZLqOPgYZ8nWqPRCTsQQ5/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyRvi6BUFCToElwp1OBv6Frgt7cT2egPCoaCS6xnaGuZFa1H9_iyOXnFDAcDZN3u3Er/exec">Psicología</button>
+      <button id="back-4-2">Volver</button>
+    </div>
+    <div id="subjects-4-3" class="buttons" style="display:none;">
+      <h2>Curso 4°3°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbz0sg5Hluo8YGSGzltYGZ89oeltfVE4Udn7aWQxed4iWxOQPxlVNGzJ_ekxvsfG-Xte/exec">Literatura</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbz_mR6gg13Ze8XmP1_D7tcQN4oxkYQloc2gEj5kpChU36qWl2LSukenPcNaD3bn7Its/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwfrvfTiEirqKRp3ABt5DuFVK7TXTQZQCTn9b-FT1-SOEUGjRmbivQSRRZGNc-Im6mf/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycby7FhxNtZvjkstw5Zbqfh-wg_GaM24rGjb7gp5no5WdshWNkxEMk43gkiyK2jSHwRuC/exec">Inglés</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzhw9Zt2J2nki7njiciYuTAsPeUvWmQHaHzC8BU96N-4BwvqCfSfMUG2EAMTSVlYuVY/exec">Nticx</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw9u0TR_TbGlzzqfY24EtQXDry_6eRm9g_aAhGqh3GXObkRXAZmcSPYd9DqmmH43mH-/exec">Salud y Adolescencia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzBq253IhPtWwrZaT7TnfFYfPd-J5IedoHN_Re4L98bCHwB3NgJZxaEvmnfZtReUlPd/exec">Introducción a la Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyNVd8gvsRtbpL27O6Z8ZX2WqLlL_5nWC1x8i9aU5sv1NvYB2XgKcrGUIJYAVlntHD5/exec">Biología</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzXhnsRkdMKD9WwfYUmFl-2vKaEpy_HrXnEIfEptBRCLfRpXOaXZXgalN5xtiBkPmOX/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxdBqc_6VElMYLSNSB4uXcPVNGYnF2q0EYumxzIGGjIuiunK8gfuyioXXZLfOaF6u0/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzPjFMfeFAe-rKiwJVbUs38mPYaptPkE5-zFY8_swVkj0Uf_iXhG19IKuU1KfeTZbNR/exec">Sistema de Información Contable</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwcw7Iukn3U2ouMq___awcKfuN4FcKjvo6kmZxRBfNUI21yYElQjyD2gxMqfP7wjguB/exec">Teoría de las Organizaciones</button>
+      <button id="back-4-3">Volver</button>
+    </div>
+    <div id="subjects-4-4" class="buttons" style="display:none;">
+      <h2>Curso 4°4°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwcoC8SpMWlMbAopskNU9-_tiJ36tRGVPFv6xV1BaJIv-xF75PAhXd1c8mavHhSyIMyew/exec">Literatura</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwzptLFkdOMS9Jiz0IKWSeRkoZp3YTNasPwbLzOgCFvNc_AlztlGmrT4e_1DCDreJRf_w/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzhG-puNZt8fqyp-TZ9-myk6PMJ4qfl3CwwLFrEySEpc6TA4QDV5W7e3pDKjuZiy5mlqA/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzGJ1xAjShgU7kR16KFZTmRfJgt-1kqavOvZJ0DBEnJ66RMpIVWkW47m3SDsV3zpMXIOw/exec">Inglés</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzAWOUU1hUQV4meAAbMKIOppKV1ytvevWrvJM-tmmQDhHuV6vMNLU6VGxFD7HIhcmOo/exec">Nticx</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwHxzEbkxUXmXn1DYwtbiymTD0PF6PwLw1GzDr2tTXBCI0CaQ25SMgAv3bbGbvhECQVVA/exec">Salud y Adolescencia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbysq94KdPQOzEubjc-gEkTnqpXJwW0kFjJ40rgxYV-hGp9X231cIGHqvV3XxvmK9cZFdw/exec">Introducción a la Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxut7CCxN14b4eV7PaIhfjlKI7ooQ13jfJA1gW1MbMF5x4fv1JnZu7Dd1Wr-6DvFKocAw/exec">Biología</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxRxq4eE83BhOHsIn6CcCeJtHzwmo9gkqAliDs_XrLleW2lWacCcIWMTzOWxG0y-qJkaA/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxPMR9qlG9Xfe8G8Zhkx4AggQfsMtYDsC-5huULz-tyiT0iwSVzSa8BtvLTdHML1c5A7A/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyry5pMPxZ4rIwfZ7r4ASjeWW4mfTHzUmKJF-MTh62-ElFmeZI9Ke_vUv62C_CAJabF3w/exec">Psicología</button>
+      <button id="back-4-4">Volver</button>
+    </div>
+    <div id="subjects-4-5" class="buttons" style="display:none;">
+      <h2>Curso 4°5°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzWuF3rw_gEzPhfdfnx3U-9n6Y92oRxjJmMJ_uXutpIfSWFK1kiaiErWo3A6YlelskFFQ/exec">Literatura</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzI_27wbV6nj8iSf3uI2JB960h9gTelBg69r6yPqtRJg-W2Qp-mKNlYCsNQ1-kYec27Pg/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwVbZIvOQ2c6ijljC2xYxP6qJzlqVUaWkyl0qrFwqWCGrIkeg9AVEFyhuDCzwkZRQthVQ/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxn_-7jjaj0G6OwYWaxTsdsdTtNjUp59Jim4Jba_X_7opx56dPNYctXHgObueKxr-t26A/exec">Inglés</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzOpga3UdR9pEnRFrNIaLIHeCfsViJGjZq6aNvrPYTWyXA1Cd_HyJyesbdtsac2UaqJDw/exec">Nticx</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwF6s91zswQygkTzzHq_llyjKxEWNiVMPuS46gzz6cVzGhi6RQvbfg-aAi7EL8Z00BzuA/exec">Salud y Adolescencia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyOs3UGJmdIgMv2_EOiD1BgdMjPr1UfYi1Hl7WIVZ3NTtn7ypUEH50QfSyv7YqdGr4Jdg/exec">Introducción a la Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyFDcRFo1ccHI4HZR6fjeBVEEErgfLR1_rAtvthzfqxoSXZzNanepjeoANmVqoAtqo-Jg/exec">Biología</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwOL72KjUaFBKIigrQNNII6W7bVN_SUobOsF7E2DXUbhtigvOnX-V2iarBZ2Qw4giokiA/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwQz7elnDUnj7jtUeZhzRwnjV0aDQai_cIMfBOAisCQ7wUHd-GwNpsvoSgm3nEU_rbU2g/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzcgpZUbOT6PCtkB0WX7Y9x-zS4RY7hik0uq-NSQ14iCrgggWZhtlcxOkGJlHpGFh3czA/exec">Sistema de Información Contable</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxIoZFxjvzgQeIoMYwjut5KGgJRbr40vFPD4Lvyj_NRw4Rd2M_1a4ThHwbfZXyP9ahKbQ/exec">Teoría de las Organizaciones</button>
+      <button id="back-4-5">Volver</button>
+    </div>
+    <div id="subjects-4-7" class="buttons" style="display:none;">
+      <h2>Curso 4°7°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxumAobteAAsHFhSTkifBj-AK8CCM1KU7kM8DdoaM0s7IZH7shh5AK7qJbwSxckqd2h/exec">Literatura</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxXp8FodyyaqvLQEI3vXjeJm-XWHx6bSaZmAV6Joi3lMsGm1DsiLr6A1pjm4i7PUWPB/exec">Matematica</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxUbuAVNk5FjCdSNtqgB1CpM9rfC9QBpYKEslKJURo5sEBg7GRAIgQRLAaTBfuBz3g3/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzSeOUmHBQq3AqBd0NgNKF-6ObigdIoigaA03BPkkV61GqxY2SPRzK2_wy3UpBdQy4C/exec">Inglés</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyiw69F0BwwgESbAS42H-XossY4_-UnXqCJtS1hk0WQD1QD10BZWUs2ns8q-uQBFMTh/exec">Nticx</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxlnAHQAYKPh8MZLV0v9mcdRvkhUGKeN9dvwkXrJK3x5fVdrnOxrXKiSAynr-03MgZH/exec">Salud y Adolescencia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzCKfm8E5XKO52ocdesfhCcC5uivjzk88jt7O17H2Hyj491EHuQ1MATWn5g076uk9_n/exec">Introducción a la Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw6lCJJtPfs9cOi3eyGZZ_FAx5WvjSv5pijZ3QNHyLhMGVtqEyXoNgF9L9VpgBm6ZRE/exec">Biología</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzP0odpRDb5Ab8SXCVc2eOFV7EB5rBMaYHkWTCfyd3nC8zZY66DHft7enxWqexvbXKl/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxvSmsrZW-ypNpaQWRc_n2bGwh8WNy47gaNRBZOxYSC6qCqsDdpomHV8Ruhrj9K-8XK/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxWKApwhVrDsQBwq0pclF9LjmBZlIYbq1On4LXID7aS37pgmLghdeEdQb9D7h0bwsB3/exec">Sistema de Información Contable</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwoBbp9gT2bhOm8ZPf2lCjZenyB8dGHWBRUXi7Pe_rxWSbibTf3Trj3vLSw5tx7p3K6/exec">Teoría de las Organizaciones</button>
+      <button id="back-4-7">Volver</button>
+    </div>
+    <div id="subjects-4-8" class="buttons" style="display:none;">
+      <h2>Curso 4°8°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwj733Cyl8_5QEsBklgDRYbe_Us_7k7QPjBeQF8eJnJ9jYu6tXx4pWv-wKb3W545iL-MQ/exec">Literatura</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwi9ALujH4xvTber48cz8u7GwO-nhRPZIcHT5TcW2xj80iv8YYtGXB1WZZ_kUazYe8d/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxAFDjZUsgV-zo90AzkWJ0dIQyv2Xe4-shFoUAv9fP1RxlAQy-IWXOwlzTrHKBAUWRzdw/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzuGFVce5BCmxHDi1HTmxsvSkelbQHyWhJhjTjBuCtrI9hO-fk0J1sa4vz-ePMqN8902g/exec">Inglés</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzQoICoVIKqf2IUZw2NNn4Xu3C-Jy2f-mZPaYrkfestxgZ6eHL_CMvavJsudyOqvWvPyA/exec">Nticx</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxjB9yN2_UVge_xPLkBFc3wnQkv8q0q3i2tO6kER/exec">Salud y Adolescencia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxevaaESO8u9K5wOhvhfFy70FctmqpgZXMSxRkErHKG_RjO3ND9TMn85XSWG_IEA-HvoQ/exec">Introducción a la Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbz9uGap_ed3PFGe8kjAqVlhZgan22Ug19CJwV5agvqkrk-Ah5FcH0fwdy_BKKMcKWqjRg/exec">Biología</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzevbkDN4JsmJdXpL_ZQowl9b8TTKTTbKe_Tqs7SDagHRnXcLZtGoSodPX24W1Uvo9dOg/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzpSLfzKR0YHiQsid5UGg3c8_1I7kkDiMSnY1hIOo4Vlw_1cCY5UyS0OpXaUiheVhah7g/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxf8LPXGp6ujVEAaU_xRLr5Os7jWRHWBtdfi5ZoO09w5GczkcxyBLrITjI6QMu2OALBZQ/exec">Psicología</button>
+      <button id="back-4-8">Volver</button>
+    </div>
+    <div id="subjects-4-10" class="buttons" style="display:none;">
+      <h2>Curso 4°10°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwliVMESwC4qp8_XvJ3ccWXsw0rCUYMwe9x1EV_TqFPYqnE_yq7ndsPcQjHX62lx9mN/exec">Literatura</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxMc6x3746dC53wVplhrlez7aJjupNrJ-DnbnnrPP6fXNgRcH1C5HlmN_qSGAuZYfsh/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxTIVu9mHqF_yBMWnTWk2vgbQ8A1Oj2ywRtc5JZ4zVXUu7WXZkmVZ71wL9d9GHOlY0s/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxIcZ0gw5iQQgIybfpkwG5ihvkZXO2Q_LFhj3GYDTO5RDLCudyNAwoaiJ358wX6nj47/exec">Inglés</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwcA3AIvKYox05cSXPL0MFVaKcJzrIfgZ9Cob93vZvK9dDpzfbY4gUDhoNX9DJgHzFl/exec">Nticx</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzaU7D0NlZh2y3fcnr8kPObyGmvbsGleF35W5-92XqscIoKHfCwIOImkcfSkW9ocdU/exec">Salud y Adolescencia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzT6GMRU__Oz9uSzrBGI9pFKYr3OTtx_K_51H-xD9qo0WT7o1E0bHPFXWg-G6QCChFd/exec">Introducción a la Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzro9_wjrHGuMuvb-pf8E1VxZhHm2Q0KaFi9r3dBqJme5JONnJnF1sh3XQGTeQEXWCy/exec">Biología</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxn0gPTrfWqZ7X5-SMbS6t6UeC89t22Mwc6GHqJguIzH1ODDwkEF-VOQhHORXHNjKtK/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw1NIHPslK9eMoDJsQmJO15_IAQJi8xYZwQKla_GD0pLLQ3aad9xFWOrIRf2kjrjwsh/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzLKIerkPJqXXtmcdgQeTTuke3S6uTTNuu4LzugRzRwfg6452pwckar-SFiuc0hGQk1/exec">Psicología</button>
+      <button id="back-4-10">Volver</button>
+    </div>
+    <!-- Subject menus para 5° items especificados -->
+    <div id="subjects-5-1" class="buttons" style="display:none;">
+      <h2>Curso 5°1°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwar-YyTKtNo4YTCEZNX73KWBHBH_GmOwCwdmFnTt-fbjh58o-sMN70m7AfnXdcQ-A3mg/exec">Literatura</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx2iSmNzmW_ajDs4ZJkc7kZ39CfnOyn7_AdU7gV49tgxvLARr9Jb_dYieyYIo09g7HRmQ/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwLFz7wFPUcrXT6rM1IJ3Z0aWeAeGMV2C0vQV2B4sSXH3NFT46eG107MXsVMz0dFMwXyA/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycby0ydiysfro0b6t8-8Zrv7Yj2wRgExEc639VRLRwNXhftCus-lcTpxs49RX2UMb-WM6ew/exec">Inglés</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzMdfWmlMb9GhgHU55kj4YGlM6s5_v-kxcYYUy37CeeodlhckyfAmUrUGfrh2QvvNYhpQ/exec">Política y Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzRI_7qPzZvlTThHoFNJFBNrNDcH5dkg_i4y5ovFLMrNgtwX5f6zHwkl8yZGSItLy4ndQ/exec">Introducción a la Química</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzMiAEKw6JCIr5lIkkxSNxQIWJtRTkg9PUrbbD_2x98VAPLRw1HUgyWJPNEFCMi3oHxqw/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwKAUuE7xDAwqRIy2SWAAb8_2WEhapbxOSuETYOfDFz3ScWuj4W6NqgUtdkS5J_uIRS/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzRG-KLP7joBBkm4yNUWKZPPTApT2sor5WAj1c4ZUBf0zwdnkpyd6q4-eTdlV4SwFuR6A/exec">Elementos de Micro y Macro Economía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwIsdU7dHCmPY2AdAtVGO1IOxrRYS-bkcu6zzvhAGe0DRSXL0ie4aNXVN6h2F_5H37VIQ/exec">Derecho</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwUg1dAFfTFqdXXiU0UkxP2wy_s1gubkTg_18Go18lTHzbUQ1xauWh2iTSQZrLgGtCrlw/exec">Sistema de Información Contable</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxAbbnODwm5btLInRkEhyvGk6jsq6Nmmmwc_98br0A5lBONITL94alUML5M8GrLt3ah7Q/exec">Gestión Organizacional</button>
+      <button id="back-5-1">Volver</button>
+    </div>
+    <div id="subjects-5-2" class="buttons" style="display:none;">
+      <h2>Curso 5°2°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyRT4rm6LQgr9valXxifLRaxaPwtz3OwpEirH_B5brv3jdQGtTFhkRcunoCt5HWfdqy/exec">Literatura</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzy3qpRtNJoiySZh31OBkLxAmZJU-5slhTWEdftJ2-M7xTkpub52Rqds7X_k0D1ypN2/exec">Matematica</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwFqRjAijOs-sb9NLzIC6hYEmyKZliDqI8TFpmykK8KlXiBnvjgiPecYDVKv6YaBcyb/exec">Educacion Fisica</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwvhlhlGw0_j0KlD6yizv5qZhpf0TZobk_vL5HONGRK0IIss-zM2pAbEc0FCqNQTwXR/exec">Inglés</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwZk6j2gJcccpvxfZZNcMBSNSdCTQyfIboK1aXWMWoAZv0UxSuEbcmX1SoW_v4Qw9x9/exec">Política y Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzbXtX3pT_86U90DDQqdTV_zZO5vVB-JZaGSr9Z8GChm1m7RBajYGWnVj6f0cBXNIuw/exec">Introducción a la Química</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzIoBLleGswaw1Jq_VIUWCsvo1joK1EwfoS1Mku0kR_upcHzlZfROqMPjOZiEWFF6PP/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyN3b11fpiawNkolApi5sPtLcnS0Rvo3se5RC5oOKfhPUSDFeieDjTIuI3Q2_HiHGCEfQ/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzsMiJR0Vca7zPSva_oXz28hoY1C5uJNX2L3y9Pnvb-FcP_i0XGIlqoOK4yU5vPeST-/exec">Economía Política</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbym7oNTcF6vPeqvTSs-PdhaHKP7ZgM0m9FTsiXMkfWch0ls1crEE8T823l54C5M5Tc6/exec">Sociología</button>
+      <button id="back-5-2">Volver</button>
+    </div>
+    <div id="subjects-5-3" class="buttons" style="display:none;">
+      <h2>Curso 5°3°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzfdJVzVubqv4wouqIgheRHEs9_Z2X8h20YYlUGAUxgI4ugo5RigC0_gqoUkuxTo7r4hw/exec">Literatura</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxlcthmW-Rl6fs8WAvsbaDGZLfzgwl-SoSwiuo1WmIvBKA4INPnL8er9ojOwxRkWd1CAQ/exec">Matematica</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzyoqsCoNaJedUaHjoJeDl9BYtm3MxtfcOjLT4F1VVAJbPWrqMCXBFyR130LHomiLL2SA/exec">Educacion Fisica</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbz6lLtjm5Ln0RT6ATGzfXz73kqGLBR1uDs9ugokWRc8nowHoBjepugXwnIjiOY-0E9soA/exec">Inglés</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwJ2rNB-5k79ha2GCGhj689jHSdR_8YSIX2Sem8TcvIFGmVpGm0o9uYX3fYNyJRAgG2BA/exec">Política y Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyKTBQSxdWpOKN5B4tNZOa3xpgA6bKLcZhpYOgVCGVcTSLkUZvBFPzzVWG1Hoe_tCgYSA/exec">Introducción a la Química</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxXmv-N2aAU4IDcy05UHiMUB2Avtj0BpMkrv944jw7MucnR65IrG2AS7xNzDGxEQvu80w/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxRL6dPxDJh1kqI2KWoD47ItWJyf14z6-vQI9JBC_4oVNl6Rh5jfjf4_Zc3wJNUhU6BoA/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx8NZtE-603923rAwommnwAYMa2GqDmVyB5OUUnwVMXGCBMEqsiUC9GEVXZCkXF6VxXmw/exec">Elementos de Micro y Macro Economía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw4HMj28nuzc6qlSL8gjZ6So28ymmfkcenRum-s7wIpC8GEqR8zaKaDO2wd1hLIIlUROw/exec">Derecho</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwJXz49t1MDK97OcuJNuJnUFF1e4M4eX3ocgGYAvUuB8qNRsNQ5euUtV_BXtkHGdoYlHQ/exec">Sistema de Información Contable</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzdH294jBcoZrHHV_ZMPAbLWgpwBK9dtGg8l8kSPHYjbqGb_z2DDMXxoOQ3kTvnrLXnjg/exec">Gestión Organizacional</button>
+      <button id="back-5-3">Volver</button>
+    </div>
+    <div id="subjects-5-4" class="buttons" style="display:none;">
+      <h2>Curso 5°4°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycby-1nnq3ymLEVcEz84E4atrjeuQs34b7Jyn8fAz2gQIRHWPy8WB6_hMp3QSyFlxXSE1sg/exec">Literatura</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzyTlDsUrJAJoilxw1yZLFQzSy9IyQtDelbmb_R0oBAkNELVa7aP4akCF6x-CUnpYgebw/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbycQMkBFQGuQnFTDNpXCkcA9c8buB6H2clqkYCossDCs-qCll2SDfgQZKKV2g2tRjl1Hg/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzLCMVshRWpIG9H0Fnp7Vje5VaMB718PEQDqIZpiA75HI4vvBEPPz3ytd5y0931kskJ8w/exec">Inglés</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwnmeH8K-pTuePWnClPZj9OGD9nolwpGHaqtGBpN3fxav17dqZFmkhQSo5fmAEVCR3rIQ/exec">Política y Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx-czpiErHg3lEThDczzhH5Lnn2f3ORsBLF9XnD-mJq1Sk6zmeU9xw6a0XwFjlMVdjNFw/exec">Introducción a la Química</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyRFO3QsQ5EnsO7MDVZMbO0gk2yPerPhRq_cKoMA91wflsEmCaqzzHGqxDzFWjnv88nFQ/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzzqfzdKSjaEVt_vJ50buGBqYp4509nCu1J1OWAd8izmFbzqZy8CcaemjERUpX9oE5REA/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxX0y5fNPGgy9iAhp2mAi4b2j5xmKCL7YN6ltqwF9MXwkgwDTOOQsuI-I_K-ctzz3J9SQ/exec">Comunicación, Cultura y Sociedad</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycby7EzmOV_KumLpxe-PlhPniXgR5iG1jJwgYx63kR5xniMWVD_b4Du4ZNQ8XefhbvwXaaA/exec">Economía Política</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyK4Mx4bRm52jCPjEkY-OY5m2G5_ph1f9K0jTmkU4mUWXrCX27-hUXe99uWRSY7H5fwXg/exec">Sociología</button>
+      <button id="back-5-4">Volver</button>
+    </div>
+    <div id="subjects-5-5" class="buttons" style="display:none;">
+      <h2>Curso 5°5°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwCI2gL8wTlXxTSCVGNn6rq2fEszBoEH5uza4YsXvTBTTqUg74YkDVox9SWc--y_R2m/exec">Literatura</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx2iSmNzmW_ajDs4ZJkc7kZ39CfnOyn7_AdU7gV49tgxvLARr9Jb_dYieyYIo09g7HRmQ/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwLFz7wFPUcrXT6rM1IJ3Z0aWeAeGMV2C0vQV2B4sSXH3NFT46eG107MXsVMz0dFMwXyA/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycby0ydiysfro0b6t8-8Zrv7Yj2wRgExEc639VRLRwNXhftCus-lcTpxs49RX2UMb-WM6ew/exec">Inglés</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzMdfWmlMb9GhgHU55kj4YGlM6s5_v-kxcYYUy37CeeodlhckyfAmUrUGfrh2QvvNYhpQ/exec">Política y Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzRI_7qPzZvlTThHoFNJFBNrNDcH5dkg_i4y5ovFLMrNgtwX5f6zHwkl8yZGSItLy4ndQ/exec">Introducción a la Química</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzMiAEKw6JCIr5lIkkxSNxQIWJtRTkg9PUrbbD_2x98VAPLRw1HUgyWJPNEFCMi3oHxqw/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwKAUuE7xDAwqRIy2SWAAb8_2WEhapbxOSuETYOfDFz3ScWuj4W6NqgUtdkS5J_uIRS/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzRG-KLP7joBBkm4yNUWKZPPTApT2sor5WAj1c4ZUBf0zwdnkpyd6q4-eTdlV4SwFuR6A/exec">Elementos de Micro y Macro Economía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwIsdU7dHCmPY2AdAtVGO1IOxrRYS-bkcu6zzvhAGe0DRSXL0ie4aNXVN6h2F_5H37VIQ/exec">Derecho</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwUg1dAFfTFqdXXiU0UkxP2wy_s1gubkTg_18Go18lTHzbUQ1xauWh2iTSQZrLgGtCrlw/exec">Sistema de Información Contable</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxAbbnODwm5btLInRkEhyvGk6jsq6Nmmmwc_98br0A5lBONITL94alUML5M8GrLt3ah7Q/exec">Gestión Organizacional</button>
+      <button id="back-5-5">Volver</button>
+    </div>
+    <div id="subjects-5-7" class="buttons" style="display:none;">
+      <h2>Curso 5°7°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwQWQS5WRg_9iNx_Jc3AQwhUeU-OTGqKPjgNC2DafHc1bWcSOEJg_ePmzhwpRDUGhit/exec">Literatura</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwQFN5cirYli9RBh_6vQ7nNCcCmy2AuN45IMGN61OCJ10BDoqXgzm2LjjToZo1C7GmV/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbydaUja1cLdwsZmnn1wHYBKHvcBD-ITZwsUSA7Blt877zGz05NvRPJ_BthB_-L8YjUu/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyq6K6DDnvSB-uVfGtuhKU5zaumyPjNXcVjLJ4oGH5YkBnjysXVpaFOF0QWIV8eWA5X/exec">Inglés</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbz2JGzaKaGGE90u_9kmF26JJ7KV60hFMTpygbC2rWzdATGW5YUY56S14fpz_q74jQQ1/exec">Política y Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzssvgXLZ1EvxeIOsG339uLd0rF1hENBbtLcRUMUKlmQdLN8Tal-EpyP8WJoRKEClvv/exec">Introducción a la Química</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxnfi8T1IjxOLkliuTAc2cvwsI1ylhQ_Xz7f0I6laCRKei0a8DLoxxxkyA5x1bITYM/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxdrW7M95DSzO8reZEhQqIN3hAJIerT5kBb30-bxpadTOOpr3kXz3gS-xriKiT3AZy2/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwBQYLiWH7NYMzg1MiwrS0IFMWZlYAESHEugvBkyz3eEWKGVMa4GH2EaIxqro8Zx1Cu/exec">Elementos de Micro y Macro Economía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbydSswKKJrSmQJjRv-8cVX7p7qrNjWauZPpEH25alZG096V1hPCjWZ6VoRRTGohWe7w/exec">Derecho</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyKlOU9-64bVtRgKVqp349w3JPIy6usbO4JuvYFbq4qrSQ6rgA/exec">Sistema de Información Contable</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxX4sYpb2UZAUddUTCl1CB4ItHG2E2pIo13HzcWi8Chwq76G50G9NpEh89FvJBsOAA4/exec">Gestión Organizacional</button>
+      <button id="back-5-7">Volver</button>
+    </div>
+    <div id="subjects-5-8" class="buttons" style="display:none;">
+      <h2>Curso 5°8°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx-yoxAS1MS6j48Sm1QBX2d6WFC-ntETk7a4R8GP1C4VGytvF1hlQw5Oo3eKH5ar2s7/exec">Literatura</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwLhzhCIvdXxKpuFh7H3rDuZlxXWx3fzahNaxS3qIUAWdlJ_pGLfEtNfGdxVAd3n0SA/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzuiIKcigHqlDYftKMdee6Zo4mqJJz1f4EmyJWYmZsFfav641yJYluAvindjhlZDirp/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxtedgsGnfD8IEmesROcffj41nQB8Q9SpSwM3nE-Isp7dZOF_J0MncRRtqCWPtYud88/exec">Inglés</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxoiBpP4Bz4jTs40B-Ksp9Dg-TN8XzqVwGFT6ZWCZpfqn_f0tFd1iz-J4mFIIsPkKGz/exec">Política y Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzRWseg3wvrG-uRRlMgL2k9BIg0sNpwdp9Y9B9UBu4aymU0r8afTmkb9FdYuXuMDYc/exec">Introducción a la Química</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxZRMoeUoOWO7emMR57aTKC_8xhQZW9mbdkRD8Fb_DvTAXllUrFQl4igXS0MXD50SG_/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwKyblHmPZi_XGyy95AWIlg_XBKkUg-Olxl_ea_NlMp6Pu4bSGCjlgq4wnLhLb-gM23/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx2U-N87nGOQSj-ddcd2CUEQSVJ3ewT4Fv-LLVF3MyS93pIHBpnVZQzbMAUqgDTDsYd/exec">Comunicación, Cultura y Sociedad</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzMcSG9MbjpXNjeEJ9-OlQKSPrGWMwJtQq4wwPVDeCSLd89o9W8fBKFaD_GsBvLBGNS/exec">Economía Política</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyjbCYHZDdJYGm_ZGQpo_VxVqojwmTC9O66xPw5AmbXPN_WNNP-nkcSqpw_1OcCr466/exec">Sociología</button>
+      <button id="back-5-8">Volver</button>
+    </div>
+    <div id="subjects-5-10" class="buttons" style="display:none;">
+      <h2>Curso 5°10°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxJgybhDiC_ZNCWYlPouYi5cnduBklVp9Vd10DAK9K2LwSqgq-dgQ-w5I4mnbO6DXxc_A/exec">Literatura</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx6PCAQh6WRU_cDNWvf8tpVIJ7ZLVnwe-OpgT5GNE3bOSCyM55F3gtO4k1JoFWHhgUVSA/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwy63bQ0fSzrEbhC562p6bbDS8OJtRbqUR2z7Ae6YE4tQy-gYjW7euo38_GSODHh_IaxQ/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyYvojMbkhLn00LgfeaV-fO_96ticjEKoT7zxJElwvcf7de-lKiQhGILhM3suZgQ26N/exec">Inglés</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwdZENyRhR_9zda04MfJsS1qKRedXVOeCUJauw88-pkPAgjnOtWc7k2ljrIhF1XabGMbQ/exec">Política y Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwqJgiSEsH6basxtdPJSNHtMhg19pwRGLpNrcXADy_4NsQf4sCdFqhOm81XVv-cLuf37w/exec">Introducción a la Química</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzbN8HFobNNBxaS8U0iSDZ3AwK5hqUqkQEx0tFWoysJNYpvvCp4eZL8yyrmM7pLMs1eGA/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxfaiX2Ch06IsOl5fAI9zEcZWwQYNFH6Ot-MmRvLZhWxYzTYn1YEfbjwEB3mcYmKrpJTg/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx1YeNe9aw3lEPNtrAidPUCDSXdEnVlBcvZEwYtYFatazG97A1o_ko03SuBwkGcz2lHAQ/exec">Comunicación, Cultura y Sociedad</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx8xRPrkEm9AOBnMTJjqL3yiPW_nhaiWTZSKQCMrQIT8k672otgdH5LNEFt0OHq6Ucblw/exec">Economía Política</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzb1Z-Jgdab0G7KQ_UqDXSwhce6B0H-Kxbv3vWngmFX6wP_3Ices8uDn58TMiw-AEg-0g/exec">Sociología</button>
+      <button id="back-5-10">Volver</button>
+    </div>
+    <!-- Subject menus para 6° items especificados -->
+    <div id="subjects-6-1" class="buttons" style="display:none;">
+      <h2>Curso 6°1°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbz6irQhwy3O2NiZ5ognfqP2mn9nPG1TT2QVp0Gm_GXqejAWtuLOR7Ds8CJBCRyJGwi7/exec">Literatura</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwWX3p2qc4sCOqTACg2e6-Je1p6v3HpWF6YDbLpWiO_IIjZGLOPifms6lEXdQ5javRN/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxs0QJoGHEmYysP7HNcH6r5erWi3_Z-SAhL6V5OKzRiL51GZhA54tviNGzjquZf0SvW/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyHNuYj5iBhqKsOrDaUOGOj2rVb-YHx1lEZmjpMqoKH06D1D65YW0Jopva14gZLFloT/exec">Inglés</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxJCe06hb0q9ysYUB0AyVk_O89JqNZ0PzBh-a-8msKKhuH289PVf6GVG4SJIxT8Jrko/exec">Trabajo y Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwgTTsT6ANZAxbC2un2ZdKsk0y-ulFm4nnWGiPKNyipHpFM3u6e9nXS3y-KyTY5t6DS/exec">Filosofía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxqaip-Fr8qvZ-GAFrTjzLZS-_unGQCvJ0y-ZQSjUFwCvz7Iu9MsbSlO4L4AnqgAUzQ/exec">Arte</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx24fv4xDTTIwqjBSuWr9ai0wBW1RWwoRefNpioFeH5acLAsRgWoNy63ghl7JmirIiJ/exec">Economía Política</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyksB4I6C0qkyAYTk9URUvFK-aGwCu9cs2LNGu-YlKW4Qc4NNd4Soe8iAgnnI7dtd96/exec">Proyectos Organizacionales</button>
+      <button id="back-6-1">Volver</button>
+    </div>
+    <div id="subjects-6-2" class="buttons" style="display:none;">
+      <h2>Curso 6°2°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwEjCYGypjQUXU8hrx8F2r9q7Uhii2VX4P3C1FtIKm0pctHWr5YVxQ0j32gQXjkgvMfTw/exec">Literatura</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxk0XkcBRtERPXJE6aBPI-9jGprUsPBEhDjwcnS1hrEJGi73jfpsuxw-xB-NPs1B4v3Cw/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwxgLa2NVaNhX_NFhHZS7gxzltaOTLmzOciztA7Nv-IJv-KdWwYyAFWWaJMXlgb1u4TkQ/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwOVLgvnF602HoEvCI4BoZAkXHxsRGephNmD0QJfzUPW-FIXDvToqj_6tCSILg-92CJwQ/exec">Inglés</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxXGrP9iLoLBz9k7SMOW47NcYELIh_BNckYgeO6_NXhuDjD2R-KJXUvrvkC298ny7-4IQ/exec">Trabajo y Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwMWrSyjcBdRr79tk-VtacZeEICHRRkUW8we601biXlgHETsmN_593cEFAZ9Bns15vrew/exec">Filosofía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzeuT63jXFrqoF6uAbZXNKaXU2atQIQrnLgrMIKF6Wex9mlX7t_Xu36pN18C-Ng3_hhNg/exec">Arte</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx24fv4xDTTIwqjBSuWr9ai0wBW1RWwoRefNpioFeH5acLAsRgWoNy63ghl7JmirIiJ/exec">Economía Política</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyksB4I6C0qkyAYTk9URUvFK-aGwCu9cs2LNGu-YlKW4Qc4NNd4Soe8iAgnnI7dtd96/exec">Proyectos Organizacionales</button>
+      <button id="back-6-2">Volver</button>
+    </div>
+    <div id="subjects-6-3" class="buttons" style="display:none;">
+      <h2>Curso 6°3°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwQKne9L-nFptGHtt-MoFcD7cRvt-HtySnRrj5yT-2UsFUOZHL1pPOZddDhiB3wxkR-Gw/exec">Literatura</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwnY84vIRNl5Tq6FGVa3WXSG5sWjenCg-amyyE8H17K5vpGD991l1ZOT6c7HiaZQvweMQ/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbz22RzbpQuHU84kRLjxgEviXoD6KZgWw3al9qT9IsuAdYNcCj0Sfi15ew99WEARZnjpXw/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwzrHdqoj4OGDHuOamT-ThBPSu0RYn6_r4wWpExQ9vtKzpndx5bnjhdAz7MXa_ePdVKLQ/exec">Inglés</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzFf2Y3fpmzeJg7zh8Ls1gaTBfY116JBkA0k8h0B4EhjPFWyrrTFO-Jh7BxgYXypld2qg/exec">Trabajo y Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyrQxqSSFLCQGhH_k96sSbWL5uAT82nVUUfZck3aq_ZPtA9W99ty1VeMmQKAho_YsvQtQ/exec">Filosofía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyYcnJjUdKWPeLmtzYug6P4Njoac_-Iiiodh8dU1tFZ3kic5B1FUg5cnSFSHA2BLPwSOg/exec">Arte</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx24fv4xDTTIwqjBSuWr9ai0wBW1RWwoRefNpioFeH5acLAsRgWoNy63ghl7JmirIiJ/exec">Economía Política</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzrNBcdY9k0_NQI19a2KXLqAOAEUHze-Kgt-UABGNo7p7ENYDVxAMGtBGzaQoMmHTzfRA/exec">Proyectos Organizacionales</button>
+      <button id="back-6-3">Volver</button>
+    </div>
+    <div id="subjects-6-4" class="buttons" style="display:none;">
+      <h2>Curso 6°4°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwnoFr-f2U4ov4m87eEiQg90Yc1WPcfSiRHi3oBgI_iVerPj3r6IO-u04MhNvdZl64c/exec">Literatura</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwoncFG0PF2rnWVECG_7Ls6b32EaEiT0xfwk0vnMHPa2TYo9ZeR-nQ06E4quiK0Vax3/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwq6qkMRRSP9ZOgTEgCrQYrMaZ2FRklYelFfLGqBgU4GHg2-lvT0JCoDKQyC-TV2NnU/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxZRAO9Zk6grhRU6GdyIwM6qgr7KNCCXWsSVF81z7TIWrJWpDv4FcWaNKwRxhlTtc4g/exec">Inglés</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxQxvcsmmResHoDsX-vjQ4o8xSuCgDJjeUQuBFqSoerRMs38fveFovNZ-xTfdUEmUPb/exec">Trabajo y Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzY7mQ90_CBlLOR0b1FBbyvwbJ3HAcTO9nO-G5muJnR17YrHkEnG4F74pm23V5QNh_P/exec">Filosofía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzcywkVvKmL1acMEgv4Q__053QuxWL4_5BYi9BS93rz6D5vSokVFammf18vp_G0O7oH/exec">Arte</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx24fv4xDTTIwqjBSuWr9ai0wBW1RWwoRefNpioFeH5acLAsRgWoNy63ghl7JmirIiJ/exec">Economía Política</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyksB4I6C0qkyAYTk9URUvFK-aGwCu9cs2LNGu-YlKW4Qc4NNd4Soe8iAgnnI7dtd96/exec">Proyectos Organizacionales</button>
+      <button id="back-6-4">Volver</button>
+    </div>
+    <div id="subjects-6-5" class="buttons" style="display:none;">
+      <h2>Curso 6°5°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzczXVstgr_w2ntH04y8xyCAAEXj20GHd-7ETd4xUldRq6gWf4ee52a-BBe3wE16lJh/exec">Literatura</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwiwCmh_324ntvt5vVCsRXoZZ2yqIceLBB4QvpCdO6NL2IVGs0HhYNPjBMx2Ac795Ww/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyay8DOlSRmkigpgoOAFIm9jy3dEdO3VgfJM7uXb1qALo4X4HAH17xyUns1Pa3IQpwW/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzIqjB6CB_bwctCsJRoz9VlFY2acU-JWJwv4ay86v7R-BmkX4izMGYBGJPixop2_emV/exec">Inglés</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx-giXqGb1g7ORIZlL9wYmvXP2kRYKGWp_Q4Vh7eHGsaXfmCCqBctPkNpHjWwGf04Xx/exec">Trabajo y Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw97edZXhwLEHazU5sZ8Mt3qNy6wJuAfyAVcOAx5yWKJZ6p4AGAhZprSKlU7XGB0hdb/exec">Filosofía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzFRWSyMRbQwZC5zAh2VU-7L1hO56Sjb942ZfKJr7iPZ10sXCzwybL_tvEQCXiBa6dL/exec">Arte</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzVwSLmQNpaCyrJu7fwTLBdNfAJgOFaX-kM30r9Izm6R3tRVOcYSAOCjcSuZ_UL5NNv/exec">Economía Política</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzbierzhyj3INxSHaEgBflNmROOd3giFXOJwE1ly8mYgU8BuQyV3ApivxIXJUC-1gGP/exec">Proyectos Organizacionales</button>
+      <button id="back-6-5">Volver</button>
+    </div>
+    <div id="subjects-6-10" class="buttons" style="display:none;">
+      <h2>Curso 6°10°</h2>
+    </div>
+  </body>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Manejar el botón de Preceptores
+      const btnPreceptores = document.getElementById('btnPreceptores');
+      const backPreceptores = document.getElementById('backPreceptores');
+      
+      if (btnPreceptores) {
+        btnPreceptores.addEventListener('click', () => {
+          // Ocultar otros submenús
+          document.getElementById('main-menu').style.display = 'none';
+          document.getElementById('submenu-1').style.display = 'none';
+          document.getElementById('submenu-2').style.display = 'none';
+          document.getElementById('submenu-3').style.display = 'none';
+          document.getElementById('submenu-4').style.display = 'none';
+          document.getElementById('submenu-5').style.display = 'none';
+          document.getElementById('submenu-6').style.display = 'none';
+          
+          // Mostrar el menú de preceptores
+          document.getElementById('submenu-preceptores').style.display = 'flex';
+        });
+      }
+
+      if (backPreceptores) {
+        backPreceptores.addEventListener('click', () => {
+          // Ocultar el menú de preceptores
+          document.getElementById('submenu-preceptores').style.display = 'none';
+          // Mostrar el menú principal
+          document.getElementById('main-menu').style.display = 'flex';
+        });
+      }
+
+      // Service Worker
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('ServiceWorker registration successful');
+            })
+            .catch(err => {
+              console.log('ServiceWorker registration failed: ', err);
+            });
+        });
+      }
+    });
+  </script>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzT--VtQBlZTkdC1ey7knpsHLodgtr7Sp-PPsbx_qso-nelpVkiDlgaK8swqNt6iTH4/exec">Literatura</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx03laFUifSyZSh6AsJMn8ufCf4XqGNUmwegMNpIcL7Q59uPM22VHzPf3nwMa9-bWt4/exec">Matemática</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbySboJdRNQ02zT4vFzA-ADImGMeKWW8X7klyDGzccWGQjD3FVr9mvwONRy3rh-AxXyD/exec">Educación Física</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwJHHFTHsxtT7apWckrbGV4pIFnKWOlTQFuLbItW5heU67GkX09hdb/exec">Inglés</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyGZyjXqs_JmCajXyDd2h1jo-p6P6wFyYlZdtdE9pMVay4xOnPrxJcpjc7VzENCGBcf/exec">Trabajo y Ciudadanía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbybKlbKB2U0o7TU7nyne14md5nmcB10EvL17wxCYZFtFezoLF9cIALUdB1D_f00jKEa/exec">Filosofía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbycdCNI-CtXfYqlPNHlA-kJrQNYg0-d-t75-yKI8w4mdmuLwpy-HFkNBB2Y0YyYy24V/exec">Arte</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx24fv4xDTTIwqjBSuWr9ai0wBW1RWwoRefNpioFeH5acLAsRgWoNy63ghl7JmirIiJ/exec">Historia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxn0gPTrfWqZ7X5-SMbS6t6UeC89t22Mwc6GHqJguIzH1ODDwkEF-VOQhHORXHNjKtK/exec">Geografía</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx1YeNe9aw3lEPNtrAidPUCDSXdEnVlBcvZEwYtYFatazG97A1o_ko03SuBwkGcz2lHAQ/exec">Proyectos de Investigación en Ciencias Sociales</button>
+      <button id="back-6-10">Volver</button>
+    </div>
+  </div>
+</body>
+<script>
+  const btn1 = document.getElementById('btn1');
+  const btn2 = document.getElementById('btn2');
+  const btn3 = document.getElementById('btn3');
+  const btn4 = document.getElementById('btn4');
+  const btn5 = document.getElementById('btn5');
+  const btn6 = document.getElementById('btn6');
+  const mainMenu = document.getElementById('main-menu');
+  const submenu1 = document.getElementById('submenu-1');
+  const submenu2 = document.getElementById('submenu-2');
+  const submenu3 = document.getElementById('submenu-3');
+  const submenu4 = document.getElementById('submenu-4');
+  const submenu5 = document.getElementById('submenu-5');
+  const submenu6 = document.getElementById('submenu-6');
+  const back1 = document.getElementById('back1');
+  const back2 = document.getElementById('back2');
+  const back3 = document.getElementById('back3');
+  const back4 = document.getElementById('back4');
+  const back5 = document.getElementById('back5');
+  const back6 = document.getElementById('back6');
+  btn1.addEventListener('click', () => {
+    mainMenu.style.display = 'none'; submenu1.style.display = 'flex';
+  });
+  btn2.addEventListener('click', () => {
+    mainMenu.style.display = 'none'; submenu2.style.display = 'flex';
+  });
+  btn3.addEventListener('click', () => {
+    mainMenu.style.display = 'none'; submenu3.style.display = 'flex';
+  });
+  btn4.addEventListener('click', () => {
+    mainMenu.style.display = 'none'; submenu4.style.display = 'flex';
+  });
+  btn5.addEventListener('click', () => {
+    mainMenu.style.display = 'none'; submenu5.style.display = 'flex';
+  });
+  btn6.addEventListener('click', () => {
+    mainMenu.style.display = 'none'; submenu6.style.display = 'flex';
+  });
+  back1.addEventListener('click', () => {
+    submenu1.style.display = 'none'; mainMenu.style.display = 'flex';
+  });
+  back2.addEventListener('click', () => {
+    submenu2.style.display = 'none'; mainMenu.style.display = 'flex';
+  });
+  back3.addEventListener('click', () => {
+    submenu3.style.display = 'none'; mainMenu.style.display = 'flex';
+  });
+  back4.addEventListener('click', () => {
+    submenu4.style.display = 'none'; mainMenu.style.display = 'flex';
+  });
+  back5.addEventListener('click', () => {
+    submenu5.style.display = 'none'; mainMenu.style.display = 'flex';
+  });
+  back6.addEventListener('click', () => {
+    submenu6.style.display = 'none'; mainMenu.style.display = 'flex';
+  });
+  // Handler for 1°x subject menus
+  ['1-1','1-2','1-3','1-4','1-5','1-6'].forEach(code => {
+    const btn = document.getElementById('btn'+code);
+    const subjectsMenu = document.getElementById('subjects-'+code);
+    const back = document.getElementById('back-'+code);
+    btn.addEventListener('click', () => {
+      mainMenu.style.display = 'none'; submenu1.style.display = 'none'; subjectsMenu.style.display = 'flex';
+    });
+    back.addEventListener('click', () => {
+      subjectsMenu.style.display = 'none'; submenu1.style.display = 'flex';
+    });
+  });
+  // Handler for 2°x subject menus
+  ['2-1','2-2','2-3','2-4','2-5','2-6'].forEach(code => {
+    const btn = document.getElementById('btn'+code);
+    const subjectsMenu = document.getElementById('subjects-'+code);
+    const back = document.getElementById('back-'+code);
+    btn.addEventListener('click', () => {
+      mainMenu.style.display = 'none'; submenu2.style.display = 'none'; subjectsMenu.style.display = 'flex';
+    });
+    back.addEventListener('click', () => {
+      subjectsMenu.style.display = 'none'; submenu2.style.display = 'flex';
+    });
+  });
+  // Handler for 3°x subject menus
+  ['3-1','3-2','3-3','3-4','3-5','3-6'].forEach(code => {
+    const btn = document.getElementById('btn'+code);
+    const subjectsMenu = document.getElementById('subjects-'+code);
+    const back = document.getElementById('back-'+code);
+    btn.addEventListener('click', () => {
+      mainMenu.style.display = 'none'; submenu3.style.display = 'none'; subjectsMenu.style.display = 'flex';
+    });
+    back.addEventListener('click', () => {
+      subjectsMenu.style.display = 'none'; submenu3.style.display = 'flex';
+    });
+  });
+  // Handler for 4°x subject menus (only those with defined menus)
+  ['4-1','4-2','4-3','4-4','4-5','4-7','4-8','4-10'].forEach(code => {
+    const btn = document.getElementById('btn'+code);
+    const subjectsMenu = document.getElementById('subjects-'+code);
+    const back = document.getElementById('back-'+code);
+    btn.addEventListener('click', () => {
+      mainMenu.style.display = 'none'; submenu4.style.display = 'none'; subjectsMenu.style.display = 'flex';
+    });
+    back.addEventListener('click', () => {
+      subjectsMenu.style.display = 'none'; submenu4.style.display = 'flex';
+    });
+  });
+  // Agregar listeners para nuevos back
+  ['4-2','4-4','4-8','4-10'].forEach(code => {
+    const back = document.getElementById('back-'+code);
+    const subjectsMenu = document.getElementById('subjects-'+code);
+    back.addEventListener('click', () => { subjectsMenu.style.display = 'none'; submenu4.style.display = 'flex'; });
+  });
+  // Handler for 5°x subject menus (only defined)
+  ['5-1','5-2','5-3','5-4','5-5','5-7','5-8','5-10'].forEach(code => {
+    const btn = document.getElementById('btn'+code);
+    const subjectsMenu = document.getElementById('subjects-'+code);
+    const back = document.getElementById('back-'+code);
+    btn.addEventListener('click', () => {
+      mainMenu.style.display = 'none'; submenu5.style.display = 'none'; subjectsMenu.style.display = 'flex';
+    });
+    back.addEventListener('click', () => {
+      subjectsMenu.style.display = 'none'; submenu5.style.display = 'flex';
+    });
+  });
+  // Handler for 6°x subject menus
+  ['6-1','6-2','6-3','6-4','6-5','6-10'].forEach(code => {
+    const btn = document.getElementById('btn'+code);
+    const subjectsMenu = document.getElementById('subjects-'+code);
+    const back = document.getElementById('back-'+code);
+    btn.addEventListener('click', () => {
+      mainMenu.style.display = 'none'; submenu6.style.display = 'none'; subjectsMenu.style.display = 'flex';
+    });
+    back.addEventListener('click', () => {
+      subjectsMenu.style.display = 'none'; submenu6.style.display = 'flex';
+    });
+  });
+  // Open Apps Script links in same window
+  document.querySelectorAll('button[data-url]').forEach(btn=>{
+    btn.addEventListener('click', ()=> window.location.href = btn.dataset.url);
+  });
+  // Prepare blank data-url attribute for all subject menu buttons
+  document.querySelectorAll('div[id^="subjects-"] > button:not([data-url])').forEach(btn => {
+    btn.setAttribute('data-url', '');
+  });
+  // Register service worker
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('SW registrado:', reg.scope))
+        .catch(err => console.error('Error SW:', err));
+    });
+  }
+</script>
+</html>

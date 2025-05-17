@@ -1,0 +1,20 @@
+{
+  "name": "ESCUELA DE EDUCACION SECUNDARIA N°2",
+  "short_name": "E.E.S N°2",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1e1e1e",
+  "theme_color": "#ffcb2b",
+  "icons": [
+    {
+      "src": "icons/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/logo1.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
