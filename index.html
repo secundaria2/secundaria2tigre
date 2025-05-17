@@ -850,12 +850,64 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   // Navigation for data-url
   document.querySelectorAll('button[data-url]').forEach(function(b) {
-    b.onclick = function() { if (b.dataset.url) window.location.href = b.dataset.url; };
+    b.onclick = function() {
+      const url = b.dataset.url;
+      if (url) {
+        // Abrir en una nueva pestaña para Google Forms
+        window.open(url, '_blank');
+      }
+    };
   });
   // Ensure the Preceptores submenu container exists
   if (!document.getElementById('submenu-preceptores')) {
     console.error('No se encontró <div id="submenu-preceptores">');
   }
 });
-</script>
+  </script>
+  <script>
+    // Manejar la instalación de la PWA
+    let deferredPrompt;
+    
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // Evita que Chrome muestre automáticamente el banner
+      e.preventDefault();
+      // Guarda el evento para usarlo más tarde
+      deferredPrompt = e;
+      
+      // Muestra un botón o mensaje para instalar la app
+      const installButton = document.createElement('button');
+      installButton.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background-color: #4e54c8;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 1000;
+      `;
+      installButton.textContent = 'Instalar App';
+      installButton.onclick = () => {
+        // Muestra el banner de instalación
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the A2HS prompt');
+          } else {
+            console.log('User dismissed the A2HS prompt');
+          }
+          deferredPrompt = null;
+        });
+      };
+      document.body.appendChild(installButton);
+    });
+
+    // Verificar si la app ya está instalada
+    window.addEventListener('appinstalled', (evt) => {
+      console.log('App instalada');
+    });
+  </script>
+</body>
 </html>
