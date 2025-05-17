@@ -823,6 +823,8 @@
       <button id="back-6-10">Volver</button>
     </div>
   </div>
+  <!-- Botón de instalación -->
+  <button id="install-app" style="display: none;">Instalar App</button>
 </body>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -922,29 +924,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Variables globales para la instalación
-    let deferredPrompt;
-    const installButton = document.getElementById('install-app');
-
-    // Estilo para el botón de instalación
-    installButton.style.cssText = `
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      padding: 10px 20px;
-      background-color: #4e54c8;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      z-index: 1000;
-      display: block;
-    `;
-
-    // Variables globales para la instalación
     let deferredPrompt = null;
     const installButton = document.getElementById('install-app');
 
-    // Inicializar el botón
+    // Estilo para el botón de instalación
     installButton.style.cssText = `
       position: fixed;
       bottom: 20px;
