@@ -7,7 +7,7 @@ const urlsToCache = [
   '/icons/logo512.png'
 ];
 
-// Asegurarse de que el scope del Service Worker sea correcto
+// Evento de instalación del Service Worker
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -15,25 +15,39 @@ self.addEventListener('install', event => {
   );
 });
 
-// Redirigir todas las peticiones a la raíz
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => response || fetch(event.request))
-      .catch(() => caches.match('/index.html'))
-  );
-});
-
-self.addEventListener('install', event => {
+// Evento de activación del Service Worker
+self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
   );
 });
 
+// Evento de fetch para cachear recursos
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
-      .then(response => response || fetch(event.request))
+      .then(response => {
+        if (response) {
+          return response;
+        }
+        return fetch(event.request)
+          .then(response => {
+            if (!response || response.status !== 200 || response.type !== 'basic') {
+              return response;
+            }
+            const responseToCache = response.clone();
+            caches.open(CACHE_NAME)
+              .then(cache => cache.put(event.request, responseToCache));
+            return response;
+          });
+      })
   );
 });

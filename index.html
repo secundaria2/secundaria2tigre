@@ -908,6 +908,17 @@ document.addEventListener('DOMContentLoaded', function() {
 });
   </script>
   <script>
+    // Verificar si el navegador soporta Service Workers
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+          console.log('Service Worker registrado con éxito');
+        })
+        .catch(error => {
+          console.log('Error al registrar el Service Worker:', error);
+        });
+    }
+
     // Variables globales para la instalación
     let deferredPrompt;
     const installButton = document.getElementById('install-app');
@@ -931,6 +942,32 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       deferredPrompt = e;
+      installButton.style.display = 'block';
+      installButton.textContent = 'Instalar App';
+    });
+
+    // Evento cuando la app ya está instalada
+    window.addEventListener('appinstalled', () => {
+      deferredPrompt = null;
+      installButton.textContent = 'App Instalada';
+      installButton.style.backgroundColor = '#666';
+      installButton.style.cursor = 'default';
+      installButton.disabled = true;
+    });
+
+    // Evento click en el botón de instalación
+    installButton.addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          installButton.textContent = 'App Instalada';
+          installButton.style.backgroundColor = '#666';
+          installButton.style.cursor = 'default';
+          installButton.disabled = true;
+        }
+        deferredPrompt = null;
+      }
     });
 
     // Evento cuando la app ya está instalada
