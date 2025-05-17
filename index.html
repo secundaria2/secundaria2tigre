@@ -991,25 +991,7 @@ document.addEventListener('DOMContentLoaded', function() {
       installButton.style.cursor = 'default';
       installButton.disabled = true;
     }
-      // No ocultamos el botón, lo mantenemos visible
-    });
-
-    // Evento click en el botón de instalación
-    installButton.addEventListener('click', async () => {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === 'accepted') {
-          // Mantenemos el botón visible incluso después de la instalación
-        }
-        deferredPrompt = null;
-      }
-    });
-
-    // Verificar si la app ya está instalada
-    if (window.matchMedia('(display-mode: standalone)').matches) {
-      // Mantenemos el botón visible incluso si está instalada
-    }
-  </script>
+  });
+</script>
 </body>
 </html>
