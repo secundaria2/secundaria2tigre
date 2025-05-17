@@ -5,18 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ESCUELA DE EDUCACION SECUNDARIA N°2</title>
   <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/logo192.png" sizes="192x192" type="image/png">
+  <link rel="icon" href="icons/logo512.png" sizes="512x512" type="image/png">
+  <link rel="apple-touch-icon" href="icons/logo192.png">
   <style>
-    .logo-container {
-      margin: 40px 0 20px;
-      text-align: center;
-    }
-    .logo {
-      max-width: 300px;
-      height: auto;
-      border-radius: 150px;
-      box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent), 0 8px 32px rgba(0,0,0,0.2);
-      animation: glow-colors 8s ease-in-out infinite;
-    }
     :root {
       --primary-bg: #1e1e1e;
       --sidebar-bg: #2a2a2a;
@@ -47,8 +39,9 @@
       background-color: var(--primary-bg);
       display: flex;
       justify-content: center;
-      align-items: center;
-      height: 100vh;
+      align-items: flex-start;
+      min-height: 100vh;
+      overflow-y: auto;
       color: var(--text-color);
     }
     .container {
@@ -67,6 +60,14 @@
       margin-bottom: 30px;
       font-weight: 600;
       font-size: 2em;
+    }
+    .logo {
+      width: 200px;
+      height: 200px;
+      margin: 20px auto;
+      border-radius: 180px;
+      box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent), 0 8px 32px rgba(0,0,0,0.2);
+      animation: glow-colors 8s ease-in-out infinite;
     }
     .buttons {
       display: flex;
@@ -110,17 +111,10 @@
     }
   </style>
 </head>
-  <body>
-    <div class="container">
+<body>
+  <div class="container">
     <h1>ESCUELA DE EDUCACION SECUNDARIA N°2</h1>
-    <div class="logo-container">
-      <img src="assets/logo.png" alt="Logo de la Escuela" class="logo">
-    </div>
-    <div id="install-button" class="buttons" style="display: none;">
-      <button id="installApp" style="background: var(--accent); color: var(--text-color); font-weight: 600;">
-        Instalar App
-      </button>
-    </div>
+    <img src="images/logo.png" alt="Logo" class="logo">
     <div id="main-menu" class="buttons">
       <button id="btn1">1°</button>
       <button id="btn2">2°</button>
@@ -128,33 +122,58 @@
       <button id="btn4">4°</button>
       <button id="btn5">5°</button>
       <button id="btn6">6°</button>
-      <button id="btnPreceptores">PRECEPTORES</button>
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw2VxBb_kqjTEqVHVHTdGEhaPIgOUd3bGe6_LtjDpFGsGv6NtNVrTvMvrVRnUiXH4a5JA/exec">INTENSIFICACION</button>
+      <button id="btn-preceptores">PRECEPTORES</button>
     </div>
-    <!-- Submenús de materias -->
-      <button id="pre4-2">4°2°</button>
-      <button id="pre4-3">4°3°</button>
-      <button id="pre4-4">4°4°</button>
-      <button id="pre4-7">4°7°</button>
-      <button id="pre4-8">4°8°</button>
-      <button id="pre4-10">4°10°</button>
-      <button id="pre5-1">5°1°</button>
-      <button id="pre5-2">5°2°</button>
-      <button id="pre5-3">5°3°</button>
-      <button id="pre5-4">5°4°</button>
-      <button id="pre5-7">5°7°</button>
-      <button id="pre5-8">5°8°</button>
-      <button id="pre5-10">5°10°</button>
-      <button id="pre6-1">6°1°</button>
-      <button id="pre6-2">6°2°</button>
-      <button id="pre6-3">6°3°</button>
-      <button id="pre6-4">6°4°</button>
-      <button id="pre6-5">6°5°</button>
-      <button id="pre6-10">6°10°</button>
-      <button id="backPreceptores">Volver</button>
+    <div id="submenu-preceptores" class="buttons" style="display:none;">
+      <h2>Preceptores</h2>
+      <!-- Curso 1° -->
+      <button id="btn-pre-1-1" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw52a_FgmtLy4gzdGZ5JAgff0D88yBcteZ9gy6YYHEaHsMp7FxVLkAwlS4IqHw_Tj0-/exec">1°1°</button>
+      <button id="btn-pre-1-2" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxkl5UmnQSL8C7autyjEbAFHhkpa5MXCxZCrhjNZY0Agg_N9iG2--6LZCq-IKemcCXS/exec">1°2°</button>
+      <button id="btn-pre-1-3" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwVb0WLvAZakTAOwKYEOLCqAR06xtWNRvzD74u_0uZlZ0LAcPcbtzV1ohy0_ihSrDSV/exec">1°3°</button>
+      <button id="btn-pre-1-4" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzA4oXRI5HElD0nIA9WA9c4FKtkC8e7NqvjABKlBsUejGnHwGqhz8YMttdrFAsKS2gSkA/exec">1°4°</button>
+      <button id="btn-pre-1-5" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzm6-W1GP9xfGqIpyvgPd0XEK_uQUllW76BgIWgHO4UJwWODurVIPbj49YyE5KR-nzg/exec">1°5°</button>
+      <button id="btn-pre-1-6" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxtA5A5PO-CV2GLkcSh-gH9u7rEl6MsqLXgWBvgf6TJxSTcagq1w4cxeSZ0W1ahfFlE/exec">1°6°</button>
+      <!-- Curso 2° -->
+      <button id="btn-pre-2-1" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwkGzv7ZIx0GDija6uGzzAkUEsztt6dc6pPrDzfWURSPbHLnNHO0G1qewdSOa06l7ZwcA/exec">2°1°</button>
+      <button id="btn-pre-2-2" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx3RNilQpCGa1K3VjncbhHJMOl6Z2WZ7rJBxSpLDPl8Jb_Xc8Jx3Bv_C0n1L2b-zO8P/exec">2°2°</button>
+      <button id="btn-pre-2-3" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzWh591mFiT24kQDa3AufgA86CxrxN0PZGLKgdC2L4OAxzCrsSSXcH1aJR8ZN1H5SaR/exec">2°3°</button>
+      <button id="btn-pre-2-4" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw7QNqKPV6Te0Ku8OOqUOjgUX9Mb-4QmCKEeEfF9ClccxETKLJo5BZwKirg_dzERkDP/exec">2°4°</button>
+      <button id="btn-pre-2-5" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxk3x--ukwT138VnPdm440_a6mcvbCP_n0brM1DRPg9E8d0AnyFNkt0SBNygbF4m0se/exec">2°5°</button>
+      <button id="btn-pre-2-6" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzxJP8bUu6B74pRzUwbAHl0dtBdX7gSyLY45jRL4dERiikZCYK0PgCqfHsgEz1IUEgOnA/exec">2°6°</button>
+      <!-- Curso 3° -->
+      <button id="btn-pre-3-1" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycby1e1_IXNIKecJoh58_y6TV423jLYoAY9A1EHKvMD9nU6WJ-YHemn_rT30vpZXWwSdX/exec">3°1°</button>
+      <button id="btn-pre-3-2" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwwDABbyR33VhrsxDv57Asd9bcKFvfwFbwnjyxUeGbxIyTPXzY5U1DMgr-9z9dlr9ai0g/exec">3°2°</button>
+      <button id="btn-pre-3-3" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxAPA7NmUebc-ETBi23jZEqJCNGZs7QuDRA9QPIdM0qf2Sc8ZNH-DgU7I7sTt7vw30Djw/exec">3°3°</button>
+      <button id="btn-pre-3-4" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx2P1j5RqesAL2XgLXvMq417kzYrUb_Qo-5RNhA9lysLUoD5Q_irCEMUBNlI9saOBex8A/exec">3°4°</button>
+      <button id="btn-pre-3-5" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbz4y3Lsofl3yaA-yoqXPJ0DfYdUBg7witmejquLTg0ieGllf-ypgeUSHyvzCUfPwS4fWQ/exec">3°5°</button>
+      <button id="btn-pre-3-6" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwAcb40AneaUMqOT1huy_N8LfBr3RVDjrnKYtlgpkNJJBMLM7r60CmqRjfVx0hgWcrDvQ/exec">3°6°</button>
+      <!-- Cursos 4° a 6° -->
+      <button id="btn-pre-4-1" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw9K-CHfzpsW1Djc5bVNjpvCp5or-Ctr4h9WPtIIDa7vnLyTvMBlXA1TCVMTxOVwtab/exec">4°1°</button>
+      <button id="btn-pre-4-2" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzUEHtKzEZlkCXXuBPbYm6Fy9hTRFh9ynZLOUCv34FP8yziJKMif-IW6YmwLyQwXm5K/exec">4°2°</button>
+      <button id="btn-pre-4-3" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbygwbAiNL35Y4urfpC_VwBn0nhbqgjGdD2BBlvxPng8ozgbVvaiwG-HK5frYbY7B-jA/exec">4°3°</button>
+      <button id="btn-pre-4-4" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxUkOe2sxkjj_k4ED41MGp5YN-zgyMWgrt0sKAGd-qgnKoZYUo1SN2sAgEv1lHRHwaBaQ/exec">4°4°</button>
+      <button id="btn-pre-4-5" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwVoy21k-6lAyPi3Sq0UweIWUmaV_bL-HdFHal_nYgHVirwlhKXUNyZ1AmOdGtFqCyxow/exec">4°5°</button>
+      <button id="btn-pre-4-7" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx67NCeQHH4ssCAzbkXbUA8FD3r09onN0MQqZ1IHMzZYUF7Q4sHIfPbNeSwxuSPdG_q/exec">4°7°</button>
+      <button id="btn-pre-4-8" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwwiB5LVg3mrT_-tjR8Z6dryY9Tod0U9I6QUtLSSBCaEkb_FDR6Tf0tdg_B3WKBUnrbTg/exec">4°8°</button>
+      <button id="btn-pre-4-10" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyBJq9vZlX8SvdW8Fu8pniWwdfQ2yCRpwsdhmNqWNmZYm2i4UF-fCLXzYN73fMZl1UK/exec">4°10°</button>
+      <button id="btn-pre-5-1" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbz_5BTg9P2v9SIs4vYj5kU0qif5YxfIkzlaAUyNEcYXvLu-7wqlo9XuBseNRiH3TSMGkw/exec">5°1°</button>
+      <button id="btn-pre-5-2" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxKQRDlcsWkQEIX7HckfItgZfqxQRmyPytJEL_YNE-mM7yuujcccB_ZHzQYj-iywc6V/exec">5°2°</button>
+      <button id="btn-pre-5-3" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx2qLK4ZAmnGNjVsDORbRUtgd5FOk2dUcT279ky-80Uf2kmTrKmQGmkoZnADXtlPm9mfA/exec">5°3°</button>
+      <button id="btn-pre-5-4" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzYqJlDz7u7fDd1ALESFypCDpJrlILL4bFCtWQJ1WF9qLOnyOLxmR3gI-AecfHJ6FtAhg/exec">5°4°</button>
+      <button id="btn-pre-5-5" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwPb5bzwVrc-wWprWVBkYQrO8fR0ajRSuXYIKmJHwulimYU7ZN0MF0UdeWWf2Y7h3Wc/exec">5°5°</button>
+      <button id="btn-pre-5-7" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxlaT5XbA9IsIu57OyL0Tw5Y5VU4WEOydl14IfcbcqMqzFoi5ZUf-VX1_AQ6CGQPZqm/exec">5°7°</button>
+      <button id="btn-pre-5-8" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx1i3TvTmvngoIca0AvqNx9RAsZDIg05w-SDsIcHQKCNxO1dYbPT9mU9dAPotlvCGL9/exec">5°8°</button>
+      <button id="btn-pre-5-10" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw5asP6po5ye4aSmpkzZ5ihk0uzSdXa7GDbCIDd5kHnhXOmwOGO8zuHrqhB7vXglrHhpQ/exec">5°10°</button>
+      <button id="btn-pre-6-1" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw3OIMIIZiAvIIYaNWJENeKJtLIFmoCkLrCo12MRzxFIl672z0rd1JiJcARNyuMdwj-/exec">6°1°</button>
+      <button id="btn-pre-6-2" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxoETPaq9w3eJ0POnK1gSMvgBMCsQOlBJ7LmmCDixOf7yNEr_SiAN1_Ll8nXFkEuZVSPw/exec">6°2°</button>
+      <button id="btn-pre-6-3" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzzgVXGVQqACmcX_ggg86gz2BgJWkM3UeX7SGwBng1gEVb0yAOgN83u1QSubFCTJ2M4Pw/exec">6°3°</button>
+      <button id="btn-pre-6-4" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyufDTBhRuCWjMJVuwywdvNToSfczYW6OFjtRwN8QlAnNHV3B6bXFWNPXWW5TdIi9aH/exec">6°4°</button>
+      <button id="btn-pre-6-5" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwKOIFMcvR5LOaQSUZSGuinh24npmjJGiQqHw90WQga00R78WDJBuB4mkh_QytKCVG-/exec">6°5°</button>
+      <button id="btn-pre-6-10" data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzOE0bsuEBOmkxV1_k5UMaR--wIypAV-uG0FwJsXl08fnYrbqrnVEqfRnkm6kjOwC2U/exec">6°10°</button>
+      <button id="back-preceptores">Volver</button>
     </div>
     <div id="submenu-1" class="buttons" style="display:none;">
-      <h2>1° Año</h2>
       <button id="btn1-1">1°1°</button>
       <button id="btn1-2">1°2°</button>
       <button id="btn1-3">1°3°</button>
@@ -219,6 +238,9 @@
     <!-- Subject menus for each 1° item -->
     <div id="subjects-1-1" class="buttons" style="display:none;">
       <h2>Curso 1°1°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzXUBIONSIBGZihL8ZbryE0bA7r46YzFWomJNWV86fsKwwBuQY1Je4TVVE28wFTm4o/exec">Ciencias Naturales</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbyMDwPADZm1bcXKi4BIBfvqPwZ43X1p0ew-eDeYz_HfZU86eCFJ-tAX597ucj3x6yD4/exec">Ciencias Sociales</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxzYzAkfUXd87qT_tNOmaPdcGX83RG0TrH4QYHahKjAVpyTm8NdTGnhnI8nQ2VNFWUG1Q/exec">Educacion Artistica</button>
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbff_Y1sKj12X251-8Ku9uPWjUuPJTTIriv9wUJLtA-C44iC7EHd9P118Diw6tsXokMSg/exec">Educacion Fisica</button>
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwI6mjWHSgLC_znB6vN2KAIqYtyjI8Gfcp0flGhfJWm8KX0fp65CLYSvfpy5nKQHI_F/exec">Ingles</button>
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzNUImkWpC2gUqWIOdfu8ghULnV5lW8T2VN4uMBchmPOwGmTRRs3x9QwcdoIBylkl2v/exec">Matemática</button>
@@ -252,6 +274,9 @@
     </div>
     <div id="subjects-1-4" class="buttons" style="display:none;">
       <h2>Curso 1°4°</h2>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxhQTMDidHTCo4i4oY-atAa25IntR4myITkhVS369iJd45xgvO6bjmonJDl8RMHqfLA8w/exec">Ciencias Naturales</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbz-e9bnqZS1HK9T2p1VKXcNn0KG6N3Nj-x-IJg2_zTNaUZsKb1_OQL65aVzS4mU8bvhsg/exec">Ciencias Sociales</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwy1Ea8f7JIbBo5bDaQpTDCjnTtc-zojI7iOk3f7ju1vdndNrfimLQD-u1q2wWdflXPiA/exec">Educacion Artistica</button>
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzBAZOzkBTWVMxuxHJbgpqIlItJg1UxYy3HftFjMQHuLqnToxjWhGEw72W7ilq1QpdKEA/exec">Educacion Fisica</button>
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxnZhhfxvobCNWmYE7Ie5NZm5vKdaTyFaaQADp4cByXztEG3Zqo7vBIrVVmNlxEnIy1zA/exec">Ingles</button>
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwK3-r9-c9bily935NDODO9GkF5muuPTXoTgx_08ElZu9JPCh-m2wGEJhdBfjN9deHBAQ/exec">Matemática</button>
@@ -367,14 +392,6 @@
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx_k5re4puyDsvSyXnDttOuO0LERqoP0wI2yjjA7yoq0M-BTJ481BPcj_UYJ24ofFRg/exec">Prácticas del Lenguaje</button>
       <button id="back-2-6">Volver</button>
     </div>
-    <!-- Submenú para 6°10° -->
-    <div id="subjects-6-10" class="buttons" style="display:none;">
-      <h2>Curso 6°10°</h2>
-      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxzYzAkfUXd87qT_tNOmaPdcGX83RG0TrH4QYHahKjAVpyTm8NdTGnhnI8nQ2VNFWUG1Q/exec">Ciencias Naturales</button>
-      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxAPKr_WN73Ye11ks9x-kLhiJEHX0H9RFHGCnDO0qDQbNfCIE-uBnoYM_bdgDBNypq7/exec">Ciencias Sociales</button>
-      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxNQkbIZ-ei-cUjTUh3wXg_Bj_1-D6jMgoWR4Et41DwtLOfO9uMs9WbnLiI7J9b3dkG/exec">Educación Física</button>
-      <button id="back-6-10">Volver</button>
-    </div>
     <!-- Subject menus para cada 3° -->
     <div id="subjects-3-1" class="buttons" style="display:none;">
       <h2>Curso 3°1°</h2>
@@ -458,7 +475,6 @@
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzO4lWdY4qhs23tzQ6bxYoFHNnTv5uB8PRLgqofpE-R0VZ3TepMLIe_iT8pchgEHhQXyw/exec">Ingles</button>
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxHYpD-xYCOkVvOZ98lHpN_AHFerqgmMz118uU_g7_kYdsVMb0tXM7GL3-wbiAIuPdjwQ/exec">Matemática</button>
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzETaYMWGVGwTBtZBZtNiPoHVwgrz6waQnSttaqxrcdmj_bnBbI6KPWVJe9Iak7relshg/exec">Prácticas del Lenguaje</button>
-      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx2VxBb_kqjTEqVHVHTdGEhaPIgOUd3bGe6_LtjDpFGsGv6NtNVrTvMvrVRnUiXH4a5JA/exec">Intensificación</button>
       <button id="back-3-6">Volver</button>
     </div>
     <!-- Subject menus para 4° items especificados -->
@@ -484,7 +500,7 @@
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbz5gfdtS9JJPsNHll6HVc6W2RO_LBO9WA3cPUAHInuE7PymKditC88SN5p2XficQU90/exec">Educacion Fisica</button>
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzlZRhiuP6peSbE5-Ty_M6EMepD1_5qfiBiS9hvUnVGoKs-ZxBYpsCAno3MRYK4tNQc/exec">Inglés</button>
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbxcz3bf4U3nYvmBw5kA41-d11Xt5phlX0GAx9vo35m3T775rI-S3Lz_0Jt6iChCLVyZ/exec">Nticx</button>
-      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzkXnk2Ujk8JuZqa07RYUkwz4pse5L9hCstTeJVCJr1lML5M3YmKtf8q0q3i2tO6kER/exec">Salud y Adolescencia</button>
+      <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzKmp5r_XMY4gchgOSMtZdYbIXzm5Z8JmCY0YczWOW6ExMbEdhdXI2t5O47pifVVlXiYA/exec">Salud y Adolescencia</button>
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbz8gqGpEWFD5jk9db7PTCxjTZy24dV1SwiLsIo29VksexKBd0zl9Zzi_mczaLGA8rns/exec">Introducción a la Física</button>
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbz5vHVptnacddMCqcReHPFUwXzf89HG-rMyigU5mphkWgH8WrwnHg_EfAYtS7106Fpc/exec">Biología</button>
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbwV_BuYYbyBnz5lPfvhuXS8HEIkVLJItO0hU1B2CYx6KPNqR_tJsv-30eokLEdokDG-/exec">Historia</button>
@@ -777,53 +793,6 @@
     </div>
     <div id="subjects-6-10" class="buttons" style="display:none;">
       <h2>Curso 6°10°</h2>
-    </div>
-  </body>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Manejar el botón de Preceptores
-      const btnPreceptores = document.getElementById('btnPreceptores');
-      const backPreceptores = document.getElementById('backPreceptores');
-      
-      if (btnPreceptores) {
-        btnPreceptores.addEventListener('click', () => {
-          // Ocultar otros submenús
-          document.getElementById('main-menu').style.display = 'none';
-          document.getElementById('submenu-1').style.display = 'none';
-          document.getElementById('submenu-2').style.display = 'none';
-          document.getElementById('submenu-3').style.display = 'none';
-          document.getElementById('submenu-4').style.display = 'none';
-          document.getElementById('submenu-5').style.display = 'none';
-          document.getElementById('submenu-6').style.display = 'none';
-          
-          // Mostrar el menú de preceptores
-          document.getElementById('submenu-preceptores').style.display = 'flex';
-        });
-      }
-
-      if (backPreceptores) {
-        backPreceptores.addEventListener('click', () => {
-          // Ocultar el menú de preceptores
-          document.getElementById('submenu-preceptores').style.display = 'none';
-          // Mostrar el menú principal
-          document.getElementById('main-menu').style.display = 'flex';
-        });
-      }
-
-      // Service Worker
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-              console.log('ServiceWorker registration successful');
-            })
-            .catch(err => {
-              console.log('ServiceWorker registration failed: ', err);
-            });
-        });
-      }
-    });
-  </script>
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbzT--VtQBlZTkdC1ey7knpsHLodgtr7Sp-PPsbx_qso-nelpVkiDlgaK8swqNt6iTH4/exec">Literatura</button>
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbx03laFUifSyZSh6AsJMn8ufCf4XqGNUmwegMNpIcL7Q59uPM22VHzPf3nwMa9-bWt4/exec">Matemática</button>
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbySboJdRNQ02zT4vFzA-ADImGMeKWW8X7klyDGzccWGQjD3FVr9mvwONRy3rh-AxXyD/exec">Educación Física</button>
@@ -839,154 +808,54 @@
   </div>
 </body>
 <script>
-  const btn1 = document.getElementById('btn1');
-  const btn2 = document.getElementById('btn2');
-  const btn3 = document.getElementById('btn3');
-  const btn4 = document.getElementById('btn4');
-  const btn5 = document.getElementById('btn5');
-  const btn6 = document.getElementById('btn6');
-  const mainMenu = document.getElementById('main-menu');
-  const submenu1 = document.getElementById('submenu-1');
-  const submenu2 = document.getElementById('submenu-2');
-  const submenu3 = document.getElementById('submenu-3');
-  const submenu4 = document.getElementById('submenu-4');
-  const submenu5 = document.getElementById('submenu-5');
-  const submenu6 = document.getElementById('submenu-6');
-  const back1 = document.getElementById('back1');
-  const back2 = document.getElementById('back2');
-  const back3 = document.getElementById('back3');
-  const back4 = document.getElementById('back4');
-  const back5 = document.getElementById('back5');
-  const back6 = document.getElementById('back6');
-  btn1.addEventListener('click', () => {
-    mainMenu.style.display = 'none'; submenu1.style.display = 'flex';
-  });
-  btn2.addEventListener('click', () => {
-    mainMenu.style.display = 'none'; submenu2.style.display = 'flex';
-  });
-  btn3.addEventListener('click', () => {
-    mainMenu.style.display = 'none'; submenu3.style.display = 'flex';
-  });
-  btn4.addEventListener('click', () => {
-    mainMenu.style.display = 'none'; submenu4.style.display = 'flex';
-  });
-  btn5.addEventListener('click', () => {
-    mainMenu.style.display = 'none'; submenu5.style.display = 'flex';
-  });
-  btn6.addEventListener('click', () => {
-    mainMenu.style.display = 'none'; submenu6.style.display = 'flex';
-  });
-  back1.addEventListener('click', () => {
-    submenu1.style.display = 'none'; mainMenu.style.display = 'flex';
-  });
-  back2.addEventListener('click', () => {
-    submenu2.style.display = 'none'; mainMenu.style.display = 'flex';
-  });
-  back3.addEventListener('click', () => {
-    submenu3.style.display = 'none'; mainMenu.style.display = 'flex';
-  });
-  back4.addEventListener('click', () => {
-    submenu4.style.display = 'none'; mainMenu.style.display = 'flex';
-  });
-  back5.addEventListener('click', () => {
-    submenu5.style.display = 'none'; mainMenu.style.display = 'flex';
-  });
-  back6.addEventListener('click', () => {
-    submenu6.style.display = 'none'; mainMenu.style.display = 'flex';
-  });
-  // Handler for 1°x subject menus
-  ['1-1','1-2','1-3','1-4','1-5','1-6'].forEach(code => {
-    const btn = document.getElementById('btn'+code);
-    const subjectsMenu = document.getElementById('subjects-'+code);
-    const back = document.getElementById('back-'+code);
-    btn.addEventListener('click', () => {
-      mainMenu.style.display = 'none'; submenu1.style.display = 'none'; subjectsMenu.style.display = 'flex';
-    });
-    back.addEventListener('click', () => {
-      subjectsMenu.style.display = 'none'; submenu1.style.display = 'flex';
-    });
-  });
-  // Handler for 2°x subject menus
-  ['2-1','2-2','2-3','2-4','2-5','2-6'].forEach(code => {
-    const btn = document.getElementById('btn'+code);
-    const subjectsMenu = document.getElementById('subjects-'+code);
-    const back = document.getElementById('back-'+code);
-    btn.addEventListener('click', () => {
-      mainMenu.style.display = 'none'; submenu2.style.display = 'none'; subjectsMenu.style.display = 'flex';
-    });
-    back.addEventListener('click', () => {
-      subjectsMenu.style.display = 'none'; submenu2.style.display = 'flex';
-    });
-  });
-  // Handler for 3°x subject menus
-  ['3-1','3-2','3-3','3-4','3-5','3-6'].forEach(code => {
-    const btn = document.getElementById('btn'+code);
-    const subjectsMenu = document.getElementById('subjects-'+code);
-    const back = document.getElementById('back-'+code);
-    btn.addEventListener('click', () => {
-      mainMenu.style.display = 'none'; submenu3.style.display = 'none'; subjectsMenu.style.display = 'flex';
-    });
-    back.addEventListener('click', () => {
-      subjectsMenu.style.display = 'none'; submenu3.style.display = 'flex';
-    });
-  });
-  // Handler for 4°x subject menus (only those with defined menus)
-  ['4-1','4-2','4-3','4-4','4-5','4-7','4-8','4-10'].forEach(code => {
-    const btn = document.getElementById('btn'+code);
-    const subjectsMenu = document.getElementById('subjects-'+code);
-    const back = document.getElementById('back-'+code);
-    btn.addEventListener('click', () => {
-      mainMenu.style.display = 'none'; submenu4.style.display = 'none'; subjectsMenu.style.display = 'flex';
-    });
-    back.addEventListener('click', () => {
-      subjectsMenu.style.display = 'none'; submenu4.style.display = 'flex';
-    });
-  });
-  // Agregar listeners para nuevos back
-  ['4-2','4-4','4-8','4-10'].forEach(code => {
-    const back = document.getElementById('back-'+code);
-    const subjectsMenu = document.getElementById('subjects-'+code);
-    back.addEventListener('click', () => { subjectsMenu.style.display = 'none'; submenu4.style.display = 'flex'; });
-  });
-  // Handler for 5°x subject menus (only defined)
-  ['5-1','5-2','5-3','5-4','5-5','5-7','5-8','5-10'].forEach(code => {
-    const btn = document.getElementById('btn'+code);
-    const subjectsMenu = document.getElementById('subjects-'+code);
-    const back = document.getElementById('back-'+code);
-    btn.addEventListener('click', () => {
-      mainMenu.style.display = 'none'; submenu5.style.display = 'none'; subjectsMenu.style.display = 'flex';
-    });
-    back.addEventListener('click', () => {
-      subjectsMenu.style.display = 'none'; submenu5.style.display = 'flex';
-    });
-  });
-  // Handler for 6°x subject menus
-  ['6-1','6-2','6-3','6-4','6-5','6-10'].forEach(code => {
-    const btn = document.getElementById('btn'+code);
-    const subjectsMenu = document.getElementById('subjects-'+code);
-    const back = document.getElementById('back-'+code);
-    btn.addEventListener('click', () => {
-      mainMenu.style.display = 'none'; submenu6.style.display = 'none'; subjectsMenu.style.display = 'flex';
-    });
-    back.addEventListener('click', () => {
-      subjectsMenu.style.display = 'none'; submenu6.style.display = 'flex';
-    });
-  });
-  // Open Apps Script links in same window
-  document.querySelectorAll('button[data-url]').forEach(btn=>{
-    btn.addEventListener('click', ()=> window.location.href = btn.dataset.url);
-  });
-  // Prepare blank data-url attribute for all subject menu buttons
-  document.querySelectorAll('div[id^="subjects-"] > button:not([data-url])').forEach(btn => {
-    btn.setAttribute('data-url', '');
-  });
-  // Register service worker
+document.addEventListener('DOMContentLoaded', function() {
+  // Auto-unregister old service workers to avoid caching stale JS
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js')
-        .then(reg => console.log('SW registrado:', reg.scope))
-        .catch(err => console.error('Error SW:', err));
-    });
+    navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
   }
+  const mainMenu = document.getElementById('main-menu');
+  // Grades 1–6
+  ['1','2','3','4','5','6'].forEach(function(n) {
+    const btn = document.getElementById('btn' + n);
+    const sub = document.getElementById('submenu-' + n);
+    const back = document.getElementById('back' + n);
+    if (btn && sub && back) {
+      btn.onclick = function() { mainMenu.style.display = 'none'; sub.style.display = 'flex'; };
+      back.onclick = function() { sub.style.display = 'none'; mainMenu.style.display = 'flex'; };
+    }
+  });
+  // Preceptores menu
+  const preBtn = document.getElementById('btn-preceptores');
+  const preSub = document.getElementById('submenu-preceptores');
+  const backPre = document.getElementById('back-preceptores');
+  if (preBtn && preSub && backPre) {
+    preBtn.onclick = function() { mainMenu.style.display = 'none'; preSub.style.display = 'flex'; };
+    backPre.onclick = function() { preSub.style.display = 'none'; mainMenu.style.display = 'flex'; };
+  }
+  // Cursos within Preceptores
+  ['1-1','1-2','1-3','1-4','1-5','1-6',
+   '2-1','2-2','2-3','2-4','2-5','2-6',
+   '3-1','3-2','3-3','3-4','3-5','3-6',
+   '4-1','4-2','4-3','4-4','4-5','4-7','4-8','4-10',
+   '5-1','5-2','5-3','5-4','5-5','5-7','5-8','5-10',
+   '6-1','6-2','6-3','6-4','6-5','6-10']
+  .forEach(function(code) {
+    const btnC = document.getElementById('btn-preceptores-' + code);
+    const subC = document.getElementById('subjects-' + code);
+    const backC = document.getElementById('back-' + code);
+    if (btnC && subC && backC) {
+      btnC.onclick = function() { preSub.style.display = 'none'; subC.style.display = 'flex'; };
+      backC.onclick = function() { subC.style.display = 'none'; preSub.style.display = 'flex'; };
+    }
+  });
+  // Navigation for data-url
+  document.querySelectorAll('button[data-url]').forEach(function(b) {
+    b.onclick = function() { if (b.dataset.url) window.location.href = b.dataset.url; };
+  });
+  // Ensure the Preceptores submenu container exists
+  if (!document.getElementById('submenu-preceptores')) {
+    console.error('No se encontró <div id="submenu-preceptores">');
+  }
+});
 </script>
 </html>
