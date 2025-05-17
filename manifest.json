@@ -1,11 +1,11 @@
 {
   "name": "E.E.S N°2",
   "short_name": "E.E.S N°2",
-  "start_url": "/index.html",
+  "start_url": "/secundaria2tigre/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#4e54c8",
-  "scope": "/",
+  "scope": "/secundaria2tigre/",
   "icons": [
     {
       "src": "icons/logo192.png",
