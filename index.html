@@ -943,13 +943,65 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
 
     // Evento cuando el navegador detecta que la app puede ser instalada
+    let deferredPrompt = null;
+    let installButton = document.getElementById('install-app');
+    
+    // Manejar el evento beforeinstallprompt
     window.addEventListener('beforeinstallprompt', (e) => {
       console.log('Evento beforeinstallprompt detectado');
+      // Prevent Chrome 67 and earlier from automatically showing the prompt
       e.preventDefault();
+      // Stash the event so it can be triggered later.
       deferredPrompt = e;
+      // Update UI to notify the user they can install the PWA
       installButton.style.display = 'block';
       installButton.textContent = 'Instalar App';
     });
+
+    // Reset the deferred prompt variable, since
+    // we've used the prompt
+    function resetInstallState() {
+      deferredPrompt = null;
+      installButton.style.display = 'none';
+      installButton.textContent = 'Instalar App';
+    }
+
+    // Cuando el usuario hace clic en el botón de instalación
+    installButton.addEventListener('click', async () => {
+      console.log('Botón de instalación clickeado');
+      if (!deferredPrompt) {
+        console.log('No hay prompt disponible para mostrar');
+        return;
+      }
+      
+      // Mostrar el prompt
+      deferredPrompt.prompt();
+      
+      // Esperar por la respuesta del usuario
+      const { outcome } = await deferredPrompt.userChoice;
+      
+      if (outcome === 'accepted') {
+        console.log('Usuario aceptó la instalación');
+        installButton.textContent = 'App Instalada';
+        installButton.style.backgroundColor = '#666';
+        installButton.style.cursor = 'default';
+        installButton.disabled = true;
+      } else {
+        console.log('Usuario rechazó la instalación');
+      }
+      
+      // Resetear el estado
+      resetInstallState();
+    });
+
+    // Verificar si la app ya está instalada
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      console.log('App ya está instalada en modo standalone');
+      installButton.textContent = 'App Instalada';
+      installButton.style.backgroundColor = '#666';
+      installButton.style.cursor = 'default';
+      installButton.disabled = true;
+    }
 
     // Evento cuando la app ya está instalada
     window.addEventListener('appinstalled', (e) => {
