@@ -943,8 +943,6 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
 
     // Evento cuando el navegador detecta que la app puede ser instalada
-    let deferredPrompt = null;
-    let installButton = document.getElementById('install-app');
     
     // Manejar el evento beforeinstallprompt
     window.addEventListener('beforeinstallprompt', (e) => {
