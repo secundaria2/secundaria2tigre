@@ -957,7 +957,46 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Mostrar un mensaje en la consola para depuración
       console.log('Prompt disponible para mostrar');
+      
+      // Verificar si el botón ya tiene un listener de click
+      if (!installButton.onclick) {
+        installButton.onclick = async () => {
+          console.log('Botón de instalación clickeado');
+          if (!deferredPrompt) {
+            console.log('No hay prompt disponible para mostrar');
+            return;
+          }
+          
+          // Mostrar el prompt
+          deferredPrompt.prompt();
+          
+          // Esperar por la respuesta del usuario
+          const { outcome } = await deferredPrompt.userChoice;
+          
+          if (outcome === 'accepted') {
+            console.log('Usuario aceptó la instalación');
+            installButton.textContent = 'App Instalada';
+            installButton.style.backgroundColor = '#666';
+            installButton.style.cursor = 'default';
+            installButton.disabled = true;
+          } else {
+            console.log('Usuario rechazó la instalación');
+          }
+          
+          // Resetear el estado
+          deferredPrompt = null;
+        };
+      }
     });
+
+    // Verificar si el navegador soporta PWA
+    if ('serviceWorker' in navigator && 'beforeinstallprompt' in window) {
+      console.log('Este navegador soporta PWA');
+      installButton.style.display = 'block';
+    } else {
+      console.log('Este navegador no soporta PWA');
+      installButton.style.display = 'none';
+    }
 
     // Verificar si el navegador soporta PWA
     if (!('serviceWorker' in navigator) || !('beforeinstallprompt' in window)) {
