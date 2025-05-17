@@ -940,8 +940,28 @@ document.addEventListener('DOMContentLoaded', function() {
       display: block;
     `;
 
+    // Variables globales para la instalación
+    let deferredPrompt = null;
+    const installButton = document.getElementById('install-app');
+
+    // Inicializar el botón
+    installButton.style.cssText = `
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background-color: #4e54c8;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1000;
+      display: block;
+    `;
+
     // Evento cuando el navegador detecta que la app puede ser instalada
     window.addEventListener('beforeinstallprompt', (e) => {
+      console.log('Evento beforeinstallprompt detectado');
       e.preventDefault();
       deferredPrompt = e;
       installButton.style.display = 'block';
@@ -949,7 +969,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Evento cuando la app ya está instalada
-    window.addEventListener('appinstalled', () => {
+    window.addEventListener('appinstalled', (e) => {
+      console.log('App instalada');
       deferredPrompt = null;
       installButton.textContent = 'App Instalada';
       installButton.style.backgroundColor = '#666';
@@ -959,21 +980,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Evento click en el botón de instalación
     installButton.addEventListener('click', async () => {
+      console.log('Botón de instalación clickeado');
       if (deferredPrompt) {
+        console.log('Mostrando prompt de instalación');
         deferredPrompt.prompt();
         const { outcome } = await deferredPrompt.userChoice;
         if (outcome === 'accepted') {
+          console.log('Usuario aceptó la instalación');
           installButton.textContent = 'App Instalada';
           installButton.style.backgroundColor = '#666';
           installButton.style.cursor = 'default';
           installButton.disabled = true;
+        } else {
+          console.log('Usuario rechazó la instalación');
         }
         deferredPrompt = null;
+      } else {
+        console.log('No hay prompt disponible para mostrar');
       }
     });
 
-    // Evento cuando la app ya está instalada
-    window.addEventListener('appinstalled', () => {
+    // Verificar si la app ya está instalada
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      console.log('App ya está instalada en modo standalone');
+      installButton.textContent = 'App Instalada';
+      installButton.style.backgroundColor = '#666';
+      installButton.style.cursor = 'default';
+      installButton.disabled = true;
+    }
       // No ocultamos el botón, lo mantenemos visible
     });
 
