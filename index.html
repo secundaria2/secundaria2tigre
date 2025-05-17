@@ -910,28 +910,14 @@ document.addEventListener('DOMContentLoaded', function() {
   <script>
     // Verificar si el navegador soporta Service Workers
     if ('serviceWorker' in navigator) {
-      // Ajustar la ruta del Service Worker para GitHub Pages
-      const scope = '/';
-      const swPath = '/secundaria2tigre/sw.js';
-      
-      navigator.serviceWorker.register(swPath, { scope })
+      // Registrar Service Worker con ruta relativa para GitHub Pages
+      navigator.serviceWorker.register('sw.js', { scope: './' })
         .then(registration => {
           console.log('Service Worker registrado con éxito');
           console.log('Scope:', registration.scope);
         })
         .catch(error => {
-          console.log('Error al registrar el Service Worker:', error);
-          console.log('Intentando con ruta relativa...');
-          
-          // Intentar con ruta relativa
-          navigator.serviceWorker.register('sw.js', { scope: './' })
-            .then(registration => {
-              console.log('Service Worker registrado con éxito usando ruta relativa');
-              console.log('Scope:', registration.scope);
-            })
-            .catch(error => {
-              console.error('Error al registrar con ruta relativa:', error);
-            });
+          console.error('Error al registrar el Service Worker:', error);
         });
     }
 

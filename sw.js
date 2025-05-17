@@ -1,10 +1,10 @@
 const CACHE_NAME = 'edu-app-v1';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/icons/logo192.png',
-  '/icons/logo512.png'
+  './',
+  './index.html',
+  './manifest.json',
+  './icons/logo192.png',
+  './icons/logo512.png'
 ];
 
 // Evento de instalación del Service Worker
