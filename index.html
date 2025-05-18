@@ -132,7 +132,7 @@
       <button id="btn5">5°</button>
       <button id="btn6">6°</button>
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw2VxBb_kqjTEqVHVHTdGEhaPIgOUd3bGe6_LtjDpFGsGv6NtNVrTvMvrVRnUiXH4a5JA/exec">INTENSIFICACION</button>
-      <button id="btn-install">INSTALAR APP</button>
+      <button data-url="https://drive.google.com/file/d/1234567890abcdefg1234567890abcdefg/view">INSTALAR APP</button>
       <button id="btn-preceptores">PRECEPTORES</button>
     </div>
     <div id="submenu-preceptores" class="buttons" style="display:none;">
@@ -825,36 +825,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   const mainMenu = document.getElementById('main-menu');
   
-  // Botón de instalación
-  const installBtn = document.getElementById('btn-install');
-  let deferredPrompt;
-  
-  // Evento para cuando el navegador ofrece la opción de instalar
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    installBtn.style.display = 'block';
-    
-    installBtn.onclick = () => {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('Usuario aceptó la instalación');
-            installBtn.style.display = 'none';
-          } else {
-            console.log('Usuario rechazó la instalación');
-          }
-          deferredPrompt = null;
-        });
-      }
-    };
-  });
-  
-  // Ocultar botón si no hay opción de instalar
-  if (!window.matchMedia('(display-mode: standalone)').matches) {
-    installBtn.style.display = 'none';
-  }
+
   // Grades 1–6
   ['1','2','3','4','5','6'].forEach(function(n) {
     const btn = document.getElementById('btn' + n);
