@@ -105,7 +105,7 @@
     }
     @media (max-width: 768px) {
       .container { padding: 20px; }
-      .buttons button { width: 90%; max-width: 400px; height: 45px; font-size: 0.9em; }
+      .buttons button { width: 95%; max-width: 400px; height: 45px; font-size: 0.9em; }
       h1 { font-size: 1.5em; }
       h2 { font-size: 1.2em; }
     }
@@ -807,51 +807,62 @@
     </div>
   </div>
 </body>
+<style>
+  /* Ajustar el ancho de los botones en modo móvil */
+  @media (max-width: 768px) {
+    button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+</style>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Manejo de los botones principales
-    const mainButtons = document.querySelectorAll('#main-menu button');
-    mainButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const mainMenu = document.getElementById('main-menu');
-            const submenuId = `submenu-${this.id.replace('btn', '')}`;
-            const submenu = document.getElementById(submenuId);
-            
-            if (submenu) {
-                // Ocultar todos los submenus
-                document.querySelectorAll('.buttons').forEach(menu => {
-                    if (menu.id !== 'main-menu') menu.style.display = 'none';
-                });
-                
-                // Mostrar el submenu correspondiente
-                submenu.style.display = 'block';
-            }
-        });
-    });
+// Auto-unregister old service workers to avoid caching stale JS
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
+}
 
-    // Manejo de los botones de los cursos
-    document.querySelectorAll('.buttons button').forEach(button => {
-        if (button.hasAttribute('data-url')) {
-            button.addEventListener('click', function() {
-                const url = this.getAttribute('data-url');
-                window.open(url, '_blank');
+// Manejo de los botones principales
+document.querySelectorAll('#main-menu button').forEach(button => {
+    button.addEventListener('click', function() {
+        const submenuId = `submenu-${this.id.replace('btn', '')}`;
+        const submenu = document.getElementById(submenuId);
+        
+        if (submenu) {
+            // Ocultar todos los submenus
+            document.querySelectorAll('.buttons').forEach(menu => {
+                if (menu.id !== 'main-menu') menu.style.display = 'none';
             });
+            
+            // Mostrar el submenu correspondiente
+            submenu.style.display = 'block';
         }
     });
+});
 
-    // Manejo de los botones "Volver"
-    document.querySelectorAll('button[id^="back"]').forEach(button => {
+// Manejo de los botones de los cursos
+document.querySelectorAll('.buttons button').forEach(button => {
+    if (button.hasAttribute('data-url')) {
         button.addEventListener('click', function() {
-            const submenuId = this.id.replace('back', 'submenu');
-            const submenu = document.getElementById(submenuId);
-            const mainMenu = document.getElementById('main-menu');
-            
-            if (submenu) {
-                submenu.style.display = 'none';
-                mainMenu.style.display = 'block';
-            }
+            const url = this.getAttribute('data-url');
+            window.open(url, '_blank');
         });
+    }
+});
+
+// Manejo de los botones "Volver"
+document.querySelectorAll('button[id^="back"]').forEach(button => {
+    button.addEventListener('click', function() {
+        const submenuId = this.id.replace('back', 'submenu');
+        const submenu = document.getElementById(submenuId);
+        const mainMenu = document.getElementById('main-menu');
+        
+        if (submenu) {
+            submenu.style.display = 'none';
+            mainMenu.style.display = 'block';
+        }
     });
+});
   ['1','2','3','4','5','6'].forEach(function(n) {
     const btn = document.getElementById('btn' + n);
     const sub = document.getElementById('submenu-' + n);
