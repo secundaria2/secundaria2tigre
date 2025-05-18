@@ -832,50 +832,51 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
 }
 
-// Manejo de los botones principales
-document.querySelectorAll('#main-menu button').forEach(button => {
-    button.addEventListener('click', function() {
-        const submenuId = `submenu-${this.id.replace('btn', '')}`;
-        const submenu = document.getElementById(submenuId);
-        
-        if (submenu) {
-            // Ocultar todos los submenus
-            document.querySelectorAll('.buttons').forEach(menu => {
-                if (menu.id !== 'main-menu') menu.style.display = 'none';
-            });
-            
-            // Mostrar el submenu correspondiente
-            submenu.style.display = 'block';
-        }
-    });
-});
-
-// Manejo de los botones de los cursos
-document.querySelectorAll('.buttons button').forEach(button => {
-    if (button.hasAttribute('data-url')) {
-        button.addEventListener('click', function() {
-            const url = this.getAttribute('data-url');
-            window.open(url, '_blank');
-        });
-    }
-});
-
-// Manejo de los botones "Volver"
-document.querySelectorAll('button[id^="back"]').forEach(button => {
-    button.addEventListener('click', function() {
-        const submenuId = this.id.replace('back', 'submenu');
-        const submenu = document.getElementById(submenuId);
-        const mainMenu = document.getElementById('main-menu');
-        
-        if (submenu) {
-            submenu.style.display = 'none';
-            mainMenu.style.display = 'block';
-        }
-    });
-});
-
-// Manejo adicional de navegación
 document.addEventListener('DOMContentLoaded', function() {
+    // Obtener el menú principal
+    const mainMenu = document.getElementById('main-menu');
+
+    // Manejo de los botones principales
+    document.querySelectorAll('#main-menu button').forEach(button => {
+        button.addEventListener('click', function() {
+            const submenuId = `submenu-${this.id.replace('btn', '')}`;
+            const submenu = document.getElementById(submenuId);
+            
+            if (submenu) {
+                // Ocultar todos los submenus
+                document.querySelectorAll('.buttons').forEach(menu => {
+                    if (menu.id !== 'main-menu') menu.style.display = 'none';
+                });
+                
+                // Mostrar el submenu correspondiente
+                submenu.style.display = 'block';
+            }
+        });
+    });
+
+    // Manejo de los botones de los cursos
+    document.querySelectorAll('.buttons button').forEach(button => {
+        if (button.hasAttribute('data-url')) {
+            button.addEventListener('click', function() {
+                const url = this.getAttribute('data-url');
+                window.open(url, '_blank');
+            });
+        }
+    });
+
+    // Manejo de los botones "Volver"
+    document.querySelectorAll('button[id^="back"]').forEach(button => {
+        button.addEventListener('click', function() {
+            const submenuId = this.id.replace('back', 'submenu');
+            const submenu = document.getElementById(submenuId);
+            
+            if (submenu) {
+                submenu.style.display = 'none';
+                mainMenu.style.display = 'block';
+            }
+        });
+    });
+
     // Manejo de menús principales
     ['1','2','3','4','5','6'].forEach(function(n) {
         const btn = document.getElementById('btn' + n);
