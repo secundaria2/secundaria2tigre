@@ -15,35 +15,19 @@
     OneSignalDeferred.push(async function(OneSignal) {
       await OneSignal.init({
         appId: "89ab9dc6-d6f2-4289-803e-d13851d11f74",
-      notifyButton: {
-        enable: true,
-        text: {
-          actionMessage: "Reciba notificaciones de la E.E.S N°2",
-          acceptButtonText: "Sí, quiero recibir notificaciones",
-          cancelButtonText: "No, gracias"
+        notifyButton: {
+          enable: true,
+          text: {
+            actionMessage: "Reciba notificaciones de la E.E.S N°2",
+            acceptButtonText: "Sí, quiero recibir notificaciones",
+            cancelButtonText: "No, gracias"
+          },
+          theme: 'light'
         },
-        theme: 'light'
-      },
-      notificationClickHandler: function(notification) {
-        window.location.href = notification.data.url || window.location.href;
-      }
-    });
-    });
-  </script>
-  <script>
-    // Manejar el botón de notificaciones
-    document.addEventListener('DOMContentLoaded', function() {
-      const notificationBtn = document.getElementById('btn-notificaciones');
-      if (notificationBtn) {
-        notificationBtn.onclick = function() {
-          OneSignal.showNativePrompt();
-        };
-        
-        // Configurar el botón de notificaciones
-        OneSignalDeferred.push(async function(OneSignal) {
-          OneSignal.showNativePrompt();
-        });
-      }
+        notificationClickHandler: function(notification) {
+          window.location.href = notification.data.url || window.location.href;
+        }
+      });
     });
   </script>
   <style>
