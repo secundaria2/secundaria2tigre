@@ -16,7 +16,7 @@
       await OneSignal.init({
         appId: "89ab9dc6-d6f2-4289-803e-d13851d11f74",
       notifyButton: {
-        enable: false,
+        enable: true,
         text: {
           actionMessage: "Reciba notificaciones de la E.E.S N°2",
           acceptButtonText: "Sí, quiero recibir notificaciones",
@@ -41,7 +41,6 @@
         
         // Configurar el botón de notificaciones
         OneSignalDeferred.push(async function(OneSignal) {
-          OneSignal.setNotificationPermission(true);
           OneSignal.showNativePrompt();
         });
       }
