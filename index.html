@@ -8,6 +8,33 @@
   <link rel="icon" href="icons/logo192.png" sizes="192x192" type="image/png">
   <link rel="icon" href="icons/logo512.png" sizes="512x512" type="image/png">
   <link rel="apple-touch-icon" href="icons/logo192.png">
+  <!-- OneSignal SDK -->
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: "89ab9dc6-d6f2-4289-803e-d13851d11f74",
+      notifyButton: {
+        enable: true
+      },
+      notificationClickHandler: function(notification) {
+        window.location.href = notification.data.url || window.location.href;
+      }
+    });
+    });
+  </script>
+  <script>
+    // Manejar el botón de notificaciones
+    document.addEventListener('DOMContentLoaded', function() {
+      const notificationBtn = document.getElementById('btn-notificaciones');
+      if (notificationBtn) {
+        notificationBtn.onclick = function() {
+          OneSignal.showNativePrompt();
+        };
+      }
+    });
+  </script>
   <style>
     :root {
       --primary-bg: #1e1e1e;
@@ -21,6 +48,14 @@
       --glow-stop-3: #ffff8c;
       --glow-stop-4: #8bc34a;
       --glow-stop-5: #03a9f4;
+    }
+    .notification-btn {
+      background: var(--accent) !important;
+      color: var(--text-color) !important;
+      border: none !important;
+    }
+    .notification-btn:hover {
+      background: #ff9900 !important;
     }
     [data-theme="light"] {
       --primary-bg: #fff;
@@ -134,6 +169,7 @@
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw2VxBb_kqjTEqVHVHTdGEhaPIgOUd3bGe6_LtjDpFGsGv6NtNVrTvMvrVRnUiXH4a5JA/exec">INTENSIFICACION</button>
       <button id="btn-install">INSTALAR APP</button>
       <button id="btn-preceptores">PRECEPTORES</button>
+      <button class="notification-btn" id="btn-notificaciones">NOTIFICACIONES</button>
     </div>
     <div id="submenu-preceptores" class="buttons" style="display:none;">
       <h2>Preceptores</h2>
