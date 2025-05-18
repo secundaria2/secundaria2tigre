@@ -16,7 +16,13 @@
       await OneSignal.init({
         appId: "89ab9dc6-d6f2-4289-803e-d13851d11f74",
       notifyButton: {
-        enable: true
+        enable: false,
+        text: {
+          actionMessage: "Reciba notificaciones de la E.E.S N°2",
+          acceptButtonText: "Sí, quiero recibir notificaciones",
+          cancelButtonText: "No, gracias"
+        },
+        theme: 'light'
       },
       notificationClickHandler: function(notification) {
         window.location.href = notification.data.url || window.location.href;
@@ -32,6 +38,12 @@
         notificationBtn.onclick = function() {
           OneSignal.showNativePrompt();
         };
+        
+        // Configurar el botón de notificaciones
+        OneSignalDeferred.push(async function(OneSignal) {
+          OneSignal.setNotificationPermission(true);
+          OneSignal.showNativePrompt();
+        });
       }
     });
   </script>
@@ -169,7 +181,7 @@
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw2VxBb_kqjTEqVHVHTdGEhaPIgOUd3bGe6_LtjDpFGsGv6NtNVrTvMvrVRnUiXH4a5JA/exec">INTENSIFICACION</button>
       <button id="btn-install">INSTALAR APP</button>
       <button id="btn-preceptores">PRECEPTORES</button>
-      <button class="notification-btn" id="btn-notificaciones">NOTIFICACIONES</button>
+      <button class="notification-btn" id="btn-notificaciones">Reciba notificaciones de la E.E.S N°2</button>
     </div>
     <div id="submenu-preceptores" class="buttons" style="display:none;">
       <h2>Preceptores</h2>
