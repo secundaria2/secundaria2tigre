@@ -132,7 +132,7 @@
       <button id="btn5">5°</button>
       <button id="btn6">6°</button>
       <button data-url="https://script.google.com/a/macros/abc.gob.ar/s/AKfycbw2VxBb_kqjTEqVHVHTdGEhaPIgOUd3bGe6_LtjDpFGsGv6NtNVrTvMvrVRnUiXH4a5JA/exec">INTENSIFICACION</button>
-      <button data-url="https://secundaria2.github.io/secundaria2tigre/">INSTALAR APP</button>
+      <button id="btn-install">INSTALAR APP</button>
       <button id="btn-preceptores">PRECEPTORES</button>
     </div>
     <div id="submenu-preceptores" class="buttons" style="display:none;">
@@ -886,13 +886,44 @@ document.addEventListener('DOMContentLoaded', function() {
   // Navigation for data-url
   document.querySelectorAll('button[data-url]').forEach(function(b) {
     b.onclick = function(e) {
-      e.preventDefault(); // Evitar el comportamiento por defecto
+      e.preventDefault();
       if (b.dataset.url) {
         window.location.href = b.dataset.url;
       }
-      return false; // Evitar propagación del evento
+      return false;
     };
   });
+
+  // Botón de instalación
+  const installBtn = document.getElementById('btn-install');
+  let deferredPrompt;
+
+  // Evento para cuando el navegador ofrece la opción de instalar
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = 'block';
+
+    installBtn.onclick = () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('Usuario aceptó la instalación');
+            installBtn.style.display = 'none';
+          } else {
+            console.log('Usuario rechazó la instalación');
+          }
+          deferredPrompt = null;
+        });
+      }
+    };
+  });
+
+  // Ocultar botón si no hay opción de instalar
+  if (!window.matchMedia('(display-mode: standalone)').matches) {
+    installBtn.style.display = 'none';
+  }
   // Ensure the Preceptores submenu container exists
   if (!document.getElementById('submenu-preceptores')) {
     console.error('No se encontró <div id="submenu-preceptores">');
