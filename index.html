@@ -916,6 +916,37 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('button[data-url]').forEach(function(b) {
     b.onclick = function() { if (b.dataset.url) window.location.href = b.dataset.url; };
   });
+
+  // Botón de instalación
+  const installBtn = document.getElementById('btn-install');
+  let deferredPrompt;
+
+  // Evento para cuando el navegador ofrece la opción de instalar
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = 'block';
+
+    installBtn.onclick = () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('Usuario aceptó la instalación');
+            installBtn.style.display = 'none';
+          } else {
+            console.log('Usuario rechazó la instalación');
+          }
+          deferredPrompt = null;
+        });
+      }
+    };
+  });
+
+  // Ocultar botón si no hay opción de instalar
+  if (!window.matchMedia('(display-mode: standalone)').matches) {
+    installBtn.style.display = 'none';
+  }
   // Ensure the Preceptores submenu container exists
   if (!document.getElementById('submenu-preceptores')) {
     console.error('No se encontró <div id="submenu-preceptores">');
