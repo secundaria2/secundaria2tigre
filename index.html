@@ -898,7 +898,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Navigation for data-url
   document.querySelectorAll('button[data-url]').forEach(function(b) {
-    b.onclick = function() { if (b.dataset.url) window.location.href = b.dataset.url; };
+    b.onclick = function() {
+      if (b.dataset.url) {
+        window.open(b.dataset.url, '_blank');
+      }
+    };
   });
 
   // Botón de instalación
