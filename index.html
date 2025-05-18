@@ -9,34 +9,30 @@
   <link rel="icon" href="icons/logo512.png" sizes="512x512" type="image/png">
   <link rel="apple-touch-icon" href="icons/logo192.png">
   <!-- OneSignal SDK -->
-  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
   <script>
-    window.OneSignal = window.OneSignal || [];
-    OneSignal.push(function() {
-      OneSignal.init({
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
         appId: "89ab9dc6-d6f2-4289-803e-d13851d11f74",
         notifyButton: {
           enable: true
         }
       });
 
-      // Manejar el botón personalizado
-      document.addEventListener('DOMContentLoaded', function() {
-        const notificationBtn = document.getElementById('btn-notificaciones');
-        if (notificationBtn) {
-          notificationBtn.onclick = function() {
-            OneSignal.showNativePrompt();
-          };
-        }
-      });
+      // Manejar el botón de notificaciones
+      const notificationBtn = document.getElementById('btn-notificaciones');
+      if (notificationBtn) {
+        notificationBtn.onclick = function() {
+          OneSignal.showNativePrompt();
+        };
+      }
 
       // Manejar el registro exitoso
-      OneSignal.push(function() {
-        OneSignal.on('subscriptionChange', function(isSubscribed) {
-          if (isSubscribed) {
-            alert('¡Perfecto! Ahora recibirá notificaciones cuando estén disponibles las calificaciones.');
-          }
-        });
+      OneSignal.on('subscriptionChange', function(isSubscribed) {
+        if (isSubscribed) {
+          alert('¡Perfecto! Ahora recibirá notificaciones cuando estén disponibles las calificaciones.');
+        }
       });
     });
   </script>
