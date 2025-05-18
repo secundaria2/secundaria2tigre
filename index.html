@@ -885,7 +885,13 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   // Navigation for data-url
   document.querySelectorAll('button[data-url]').forEach(function(b) {
-    b.onclick = function() { if (b.dataset.url) window.location.href = b.dataset.url; };
+    b.onclick = function(e) {
+      e.preventDefault(); // Evitar el comportamiento por defecto
+      if (b.dataset.url) {
+        window.location.href = b.dataset.url;
+      }
+      return false; // Evitar propagación del evento
+    };
   });
   // Ensure the Preceptores submenu container exists
   if (!document.getElementById('submenu-preceptores')) {
