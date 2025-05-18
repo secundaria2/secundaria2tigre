@@ -15,19 +15,27 @@
     OneSignalDeferred.push(async function(OneSignal) {
       await OneSignal.init({
         appId: "89ab9dc6-d6f2-4289-803e-d13851d11f74",
-        notifyButton: {
-          enable: true,
-          text: {
-            actionMessage: "Reciba notificaciones de la E.E.S N°2",
-            acceptButtonText: "Sí, quiero recibir notificaciones",
-            cancelButtonText: "No, gracias"
-          },
-          theme: 'light'
-        },
         notificationClickHandler: function(notification) {
           window.location.href = notification.data.url || window.location.href;
         }
       });
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const notificationBtn = document.getElementById('btn-notificaciones');
+      if (notificationBtn) {
+        notificationBtn.onclick = async function() {
+          try {
+            const OneSignal = window.OneSignal;
+            if (OneSignal) {
+              await OneSignal.showNativePrompt();
+            }
+          } catch (error) {
+            console.error('Error al mostrar el prompt de notificaciones:', error);
+          }
+        };
+      }
     });
   </script>
   <style>
