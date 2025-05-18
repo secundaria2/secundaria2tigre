@@ -18,14 +18,22 @@
               const permission = await Notification.requestPermission();
               if (permission === 'granted') {
                 console.log('Permisos de notificaciones concedidos');
+                // Mostrar mensaje de éxito
+                alert('¡Perfecto! Ahora recibirá notificaciones cuando estén disponibles las calificaciones.');
+              } else {
+                // Mostrar mensaje de denegado
+                alert('Para recibir notificaciones, por favor habilite los permisos en la configuración de su navegador.');
               }
             } else if (Notification.permission === 'granted') {
               console.log('Permisos de notificaciones ya concedidos');
+              alert('¡Ya está recibiendo notificaciones!');
             } else {
               console.log('Permisos de notificaciones denegados');
+              alert('Para recibir notificaciones, por favor habilite los permisos en la configuración de su navegador.');
             }
           } catch (error) {
             console.error('Error al solicitar permisos de notificaciones:', error);
+            alert('Error al solicitar permisos de notificaciones. Por favor, intente nuevamente.');
           }
         };
       }
