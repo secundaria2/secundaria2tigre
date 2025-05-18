@@ -854,14 +854,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Manejo de los botones de los cursos
-    document.querySelectorAll('.buttons button').forEach(button => {
-        if (button.hasAttribute('data-url')) {
-            button.addEventListener('click', function() {
-                const url = this.getAttribute('data-url');
+    // Manejo de los botones de las materias
+    document.querySelectorAll('.buttons button[data-url]').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault(); // Evitar comportamiento por defecto
+            const url = this.getAttribute('data-url');
+            if (url) {
                 window.open(url, '_blank');
-            });
-        }
+            }
+        });
     });
 
     // Manejo de los botones "Volver"
